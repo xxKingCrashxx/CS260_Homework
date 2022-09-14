@@ -47,14 +47,30 @@ public class UpperTriangleMatrix implements Cloneable
         return false;
     }
 
-    public void setElement(int row, int col, String data)
+    public void setElement(int row, int col, String data) throws Exception
     {
+        if (row >= col) 
+        {
+            elementArrary[row * (row +1)/2 + col] = data;  
+        } 
+        else 
+        {
+            throw new Exception("Invalid index");
+        }
 
     }
 
     public String getElement(int row, int col)
     {
-        return null;
+        if(row < col)
+        {
+            return null;
+        }
+        else
+        {
+            return elementArrary[row*(row+1)/2 + col];
+        }
+
     }
 
     public String toString()
