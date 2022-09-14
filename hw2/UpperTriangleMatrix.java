@@ -32,18 +32,23 @@ public class UpperTriangleMatrix implements Cloneable
         return clonedObj; 
     }
 
-    public static UpperTriangleMatrix concat(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
-    {
-        return null;
-    }
-
-    public static UpperTriangleMatrix largestCombo(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
-    {
-        return null;
-    }
-
     public boolean equals(Object ob)
     {
+        if(ob instanceof UpperTriangleMatrix)
+        {
+            UpperTriangleMatrix utm2 = (UpperTriangleMatrix)ob;
+
+            if(utm2.elementArrary.length != this.elementArrary.length)
+                return false;
+            
+            for (int i = 0; i < this.elementArrary.length; i++) 
+            {
+
+                if(!(utm2.elementArrary[i].equals(this.elementArrary[i])))
+                    return false;
+                return true;
+            }    
+        }
         return false;
     }
 
@@ -74,6 +79,16 @@ public class UpperTriangleMatrix implements Cloneable
     }
 
     public String toString()
+    {
+        return null;
+    }
+
+    public static UpperTriangleMatrix concat(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
+    {
+        return null;
+    }
+
+    public static UpperTriangleMatrix largestCombo(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
     {
         return null;
     }
