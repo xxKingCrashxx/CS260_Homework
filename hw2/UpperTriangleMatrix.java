@@ -23,7 +23,7 @@ public class UpperTriangleMatrix implements Cloneable
             clonedObj = (UpperTriangleMatrix)super.clone();
 
             //deep copy of string array
-            clonedObj.elementArrary = elementArrary.clone();
+            clonedObj.elementArrary = this.elementArrary.clone();
         } 
         catch (CloneNotSupportedException e) 
         {
@@ -43,7 +43,6 @@ public class UpperTriangleMatrix implements Cloneable
             
             for (int i = 0; i < this.elementArrary.length; i++) 
             {
-
                 if(!(utm2.elementArrary[i].equals(this.elementArrary[i])))
                     return false;
                 return true;
@@ -54,7 +53,7 @@ public class UpperTriangleMatrix implements Cloneable
 
     public void setElement(int row, int col, String data) throws Exception
     {
-        if (row >= col) 
+        if (row <= col) 
         {
             elementArrary[row * (row +1)/2 + col] = data;  
         } 
@@ -67,7 +66,7 @@ public class UpperTriangleMatrix implements Cloneable
 
     public String getElement(int row, int col)
     {
-        if(row < col)
+        if(row > col)
         {
             return null;
         }
