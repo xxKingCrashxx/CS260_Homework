@@ -1,18 +1,18 @@
 public class UpperTriangleMatrix implements Cloneable
 {
-    private String[] elementArrary;
+    private String[] elementArray;
     private int matrixSideLen;
 
     public UpperTriangleMatrix()
     {
         matrixSideLen = 10;
-        elementArrary = new String[(matrixSideLen*(matrixSideLen+1))/2];
+        elementArray = new String[(matrixSideLen*(matrixSideLen+1))/2];
     }
 
     public UpperTriangleMatrix(int size)
     {
         matrixSideLen = size;
-        elementArrary = new String[(size*(size+1))/2];
+        elementArray = new String[(size*(size+1))/2];
     }
 
     @Override
@@ -25,7 +25,7 @@ public class UpperTriangleMatrix implements Cloneable
             clonedObj = (UpperTriangleMatrix)super.clone();
 
             //deep copy of string array
-            clonedObj.elementArrary = this.elementArrary.clone();
+            clonedObj.elementArray = this.elementArray.clone();
         } 
         catch (CloneNotSupportedException e) 
         {
@@ -40,12 +40,12 @@ public class UpperTriangleMatrix implements Cloneable
         {
             UpperTriangleMatrix utm2 = (UpperTriangleMatrix)ob;
 
-            if(utm2.elementArrary.length != this.elementArrary.length)
+            if(utm2.elementArray.length != this.elementArray.length)
                 return false;
             
-            for (int i = 0; i < this.elementArrary.length; i++) 
+            for (int i = 0; i < this.elementArray.length; i++) 
             {
-                if(!(utm2.elementArrary[i].equals(this.elementArrary[i])))
+                if(!(utm2.elementArray[i].equals(this.elementArray[i])))
                     return false;
                 return true;
             }    
@@ -57,7 +57,7 @@ public class UpperTriangleMatrix implements Cloneable
     {
         if (row <= col && col < matrixSideLen) 
         {
-            elementArrary[(row * (row +1))/2 + col] = data;  
+            elementArray[(row * (row +1))/2 + col] = data;  
         } 
         else 
         {
@@ -74,7 +74,7 @@ public class UpperTriangleMatrix implements Cloneable
         }
         else
         {
-            return elementArrary[(row * (row +1))/2 + col];
+            return elementArray[(row * (row +1))/2 + col];
         }
 
     }
