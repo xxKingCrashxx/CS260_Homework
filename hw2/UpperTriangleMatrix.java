@@ -55,9 +55,10 @@ public class UpperTriangleMatrix implements Cloneable
 
     public void setElement(int row, int col, String data) throws Exception
     {
-        if (row <= col) 
+        if (col >= row) 
         {
-            elementArray[(row * (row +1))/2 + col] = data;  
+            int index = ((row * matrixSideLen - (row*(row+1)/2) + col));
+            elementArray[index]  = data;  
         } 
         else 
         {
@@ -68,13 +69,13 @@ public class UpperTriangleMatrix implements Cloneable
 
     public String getElement(int row, int col)
     {
-        if(row > col)
+        if(col >= row)
         {
-            return null;
+            return elementArray[(row * matrixSideLen - (row*(row+1)/2) + col)];
         }
         else
         {
-            return elementArray[(row * (row +1))/2 + col];
+            return null;
         }
 
     }
@@ -94,6 +95,9 @@ public class UpperTriangleMatrix implements Cloneable
             }
             System.out.print("\t|");
             System.out.println();
+        }
+        for (String string : elementArray) {
+            System.out.println(string);
         }
         return null;
     }

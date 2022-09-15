@@ -21,6 +21,7 @@ public class Main
         utm.setElement(4, 4, "44");
 
         utm.toString();
+        System.out.println("element in index 00:" + utm.getElement(0, 0));
 
     }
     
