@@ -84,20 +84,15 @@ public class UpperTriangleMatrix implements Cloneable
     {
         for (int row = 0; row < matrixSideLen; row++) {
 
-            System.out.print("|\t");
             for (int col = 0; col < matrixSideLen; col++) 
             {
-                System.out.print(this.getElement(row, col) + "\t");
+                System.out.printf("|'%-10s'|", this.getElement(row, col));
 
                 if (col == matrixSideLen -1) {
                     break;
                 }
             }
-            System.out.print("\t|");
             System.out.println();
-        }
-        for (String string : elementArray) {
-            System.out.println(string);
         }
         return null;
     }
