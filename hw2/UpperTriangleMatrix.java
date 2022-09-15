@@ -1,15 +1,17 @@
 public class UpperTriangleMatrix implements Cloneable
 {
     private String[] elementArrary;
+    private int matrixSideLen;
 
     public UpperTriangleMatrix()
     {
-        int n = 10;
-        elementArrary = new String[(n*(n+1))/2];
+        matrixSideLen = 10;
+        elementArrary = new String[(matrixSideLen*(matrixSideLen+1))/2];
     }
 
     public UpperTriangleMatrix(int size)
     {
+        matrixSideLen = size;
         elementArrary = new String[(size*(size+1))/2];
     }
 
@@ -53,9 +55,9 @@ public class UpperTriangleMatrix implements Cloneable
 
     public void setElement(int row, int col, String data) throws Exception
     {
-        if (row <= col) 
+        if (row <= col && col < matrixSideLen) 
         {
-            elementArrary[row * (row +1)/2 + col] = data;  
+            elementArrary[(row * (row +1))/2 + col] = data;  
         } 
         else 
         {
@@ -72,14 +74,14 @@ public class UpperTriangleMatrix implements Cloneable
         }
         else
         {
-            return elementArrary[row*(row+1)/2 + col];
+            return elementArrary[(row * (row +1))/2 + col];
         }
 
     }
 
     public String toString()
     {
-        return null;
+        return "";
     }
 
     public static UpperTriangleMatrix concat(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)

@@ -1,10 +1,9 @@
 public class Main 
 {
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
-        UpperTriangleMatrix utm = new UpperTriangleMatrix();
-        
+        UpperTriangleMatrix utm = new UpperTriangleMatrix(10);
 
     }
     
