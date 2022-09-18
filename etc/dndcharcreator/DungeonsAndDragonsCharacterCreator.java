@@ -1,20 +1,30 @@
 public class DungeonsAndDragonsCharacterCreator
 {
 	public static void main(String[] args){
+		Item item = new Item("sword", 1, 2.5);
+		item.calculateItemWeight();
+		item.toString();
 		
 	}
 }
 
 class Character
 {
+	private static constant String[] ABILITY_HEADINGS = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"};
+	private static constant int[] EXP_PROGRESSION = {300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000};
+
 	private String characterName;
 	private String characterClass;
+	private string characterRace;
+
 	private int characterHealth;
 	private int maxHealth;
-	
+	private int characterExp;
 	private int characterLevel
 	
-	Item[] characterInventor;
+	Item[] characterInventory;
+	int[] characterAbilityScores;
+	 
 	
 	
 }
