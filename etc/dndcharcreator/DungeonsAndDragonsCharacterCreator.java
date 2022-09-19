@@ -19,11 +19,19 @@ class Character
 
 	private int characterHealth;
 	private int maxHealth;
-	private int characterExp;
-	private int characterLevel;
+	private int characterExp = 0;
+	private int characterLevel = 1;
 	
 	Item[] characterInventory;
 	int[] characterAbilityScores;
+
+	public Character(String characterName, String characterClass, String characterRace)
+	{
+		this.characterName = characterName;
+		this.characterClass = characterClass;
+		this.characterRace = characterRace;
+
+	}
 	 
 	
 	
