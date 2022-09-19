@@ -101,15 +101,15 @@ public class UpperTriangleMatrix implements Cloneable
     {
         int utm1Length = utm1.elementArray.length;
         int utm2Length = utm2.elementArray.length;
-        UpperTriangleMatrix result;
-
-        if (utm1Length > utm2Length) {
-            result = new UpperTriangleMatrix(utm1Length);
-        }
-        result = new UpperTriangleMatrix(utm2Length);
+        UpperTriangleMatrix result = null;
 
         try
         {
+            if (utm1Length > utm2Length) {
+                result = utm1.clone();
+            }
+            result = utm2.clone();
+
             for (int i = 0; i < result.elementArray.length; i++) 
             {
                 result.elementArray[i] = utm1.elementArray[i] + " " + utm2.elementArray[i];
@@ -118,6 +118,10 @@ public class UpperTriangleMatrix implements Cloneable
         catch(IndexOutOfBoundsException e)
         {
             return result;
+        }
+        catch(CloneNotSupportedException ex)
+        {
+            return null;
         }  
         return result;
     }
