@@ -4,7 +4,7 @@ public class DungeonsAndDragonsCharacterCreator
 		Item item = new Item("sword", 1, 2.5);
 		item.calculateItemWeight();
 		item.toString();
-		
+
 	}
 }
 
@@ -22,8 +22,8 @@ class Character
 	private int characterExp = 0;
 	private int characterLevel = 1;
 	
-	Item[] characterInventory;
-	int[] characterAbilityScores;
+	private Item[] characterInventory;
+	private int[] characterAbilityScores;
 
 	public Character(String characterName, String characterClass, String characterRace)
 	{
