@@ -99,7 +99,27 @@ public class UpperTriangleMatrix implements Cloneable
 
     public static UpperTriangleMatrix concat(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
     {
-        return null;
+        int utm1Length = utm1.elementArray.length;
+        int utm2Length = utm2.elementArray.length;
+        UpperTriangleMatrix result;
+
+        if (utm1Length > utm2Length) {
+            result = new UpperTriangleMatrix(utm1Length);
+        }
+        result = new UpperTriangleMatrix(utm2Length);
+
+        try
+        {
+            for (int i = 0; i < result.elementArray.length; i++) 
+            {
+                result.elementArray[i] = utm1.elementArray[i] + " " + utm2.elementArray[i];
+            }
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            return result;
+        }  
+        return result;
     }
 
     public static UpperTriangleMatrix largestCombo(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
