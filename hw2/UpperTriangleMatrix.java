@@ -123,11 +123,14 @@ public class UpperTriangleMatrix implements Cloneable
 
         for (int i = 0; i < comboUtm.elementArray.length; i++) 
         {
-            if(utm1.elementArray[i].length() > utm2.elementArray[i].length())
+            if(utm1.elementArray[i].length() >= utm2.elementArray[i].length())
             {
                 comboUtm.elementArray[i] = utm1.elementArray[i];
             }
-            comboUtm.elementArray[i] = utm2.elementArray[i];
+            else
+            {
+                comboUtm.elementArray[i] = utm2.elementArray[i];
+            }
         }
         return comboUtm;
     }

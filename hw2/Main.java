@@ -37,16 +37,18 @@ public class Main
         utm2.setElement(3, 4, "baker");
         utm2.setElement(4, 4, "baker");
 
-        UpperTriangleMatrix utm3 = new UpperTriangleMatrix(3);
-
         utm.toString();
         System.out.println();
+        
         utm2.toString();
         System.out.println();
 
         UpperTriangleMatrix concatUtm = UpperTriangleMatrix.concat(utm, utm2);
-        UpperTriangleMatrix.concat(utm, utm3);
         concatUtm.toString();
+
+        System.out.println();
+        UpperTriangleMatrix comboUtm = UpperTriangleMatrix.largestCombo(utm, utm2);
+        comboUtm.toString();
 
     }
     
