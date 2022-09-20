@@ -34,6 +34,7 @@ public class UpperTriangleMatrix implements Cloneable
         return clonedObj; 
     }
 
+    @Override
     public boolean equals(Object ob)
     {
         if(ob instanceof UpperTriangleMatrix)
@@ -47,8 +48,8 @@ public class UpperTriangleMatrix implements Cloneable
             {
                 if(!(utm2.elementArray[i].equals(this.elementArray[i])))
                     return false;
-                return true;
-            }    
+            }
+            return true;    
         }
         return false;
     }
@@ -101,7 +102,7 @@ public class UpperTriangleMatrix implements Cloneable
     {
         if(utm1.matrixSideLen != utm2.matrixSideLen)
         {
-            throw new MismatchUpperTriangleMatrixSizeException("size lengths do not match between the two UpperTriangleMatrix objects");
+            throw new MismatchUpperTriangleMatrixSizeException(MismatchUpperTriangleMatrixSizeException.ERROR_MSG);
         }
 
         UpperTriangleMatrix concatUtm = new UpperTriangleMatrix(utm1.matrixSideLen);
@@ -111,9 +112,24 @@ public class UpperTriangleMatrix implements Cloneable
         return concatUtm;
     }
 
-    public static UpperTriangleMatrix largestCombo(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
+    public static UpperTriangleMatrix largestCombo(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2) throws MismatchUpperTriangleMatrixSizeException
     {
-        return null;
+        if(utm1.matrixSideLen != utm2.matrixSideLen)
+        {
+            throw new MismatchUpperTriangleMatrixSizeException(MismatchUpperTriangleMatrixSizeException.ERROR_MSG);
+        }
+
+        UpperTriangleMatrix comboUtm = new UpperTriangleMatrix(utm1.matrixSideLen);
+
+        for (int i = 0; i < comboUtm.elementArray.length; i++) 
+        {
+            if(utm1.elementArray[i].length() > utm2.elementArray[i].length())
+            {
+                comboUtm.elementArray[i] = utm1.elementArray[i];
+            }
+            comboUtm.elementArray[i] = utm2.elementArray[i];
+        }
+        return comboUtm;
     }
     
 }
