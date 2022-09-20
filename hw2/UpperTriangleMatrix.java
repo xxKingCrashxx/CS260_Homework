@@ -97,33 +97,18 @@ public class UpperTriangleMatrix implements Cloneable
         return null;
     }
 
-    public static UpperTriangleMatrix concat(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
+    public static UpperTriangleMatrix concat(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2) throws MismatchUpperTriangleMatrixSizeException
     {
-        int utm1Length = utm1.elementArray.length;
-        int utm2Length = utm2.elementArray.length;
-        UpperTriangleMatrix result = null;
-
-        try
+        if(utm1.matrixSideLen != utm2.matrixSideLen)
         {
-            if (utm1Length > utm2Length) {
-                result = utm1.clone();
-            }
-            result = utm2.clone();
-
-            for (int i = 0; i < result.elementArray.length; i++) 
-            {
-                result.elementArray[i] = utm1.elementArray[i] + " " + utm2.elementArray[i];
-            }
+            throw new MismatchUpperTriangleMatrixSizeException("size lengths do not match between the two UpperTriangleMatrix objects");
         }
-        catch(IndexOutOfBoundsException e)
-        {
-            return result;
+
+        UpperTriangleMatrix concatUtm = new UpperTriangleMatrix(utm1.matrixSideLen);
+        for (int i = 0; i < utm1.elementArray.length; i++) {
+            concatUtm.elementArray[i] = utm1.elementArray[i] + " " + utm2.elementArray[i];
         }
-        catch(CloneNotSupportedException ex)
-        {
-            return null;
-        }  
-        return result;
+        return concatUtm;
     }
 
     public static UpperTriangleMatrix largestCombo(UpperTriangleMatrix utm1, UpperTriangleMatrix utm2)
