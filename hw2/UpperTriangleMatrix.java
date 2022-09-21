@@ -106,7 +106,7 @@ public class UpperTriangleMatrix implements Cloneable
         }
 
         UpperTriangleMatrix concatUtm = new UpperTriangleMatrix(utm1.matrixSideLen);
-        for (int i = 0; i < utm1.elementArray.length; i++) {
+        for (int i = 0; i < concatUtm.elementArray.length; i++) {
             concatUtm.elementArray[i] = utm1.elementArray[i] + " " + utm2.elementArray[i];
         }
         return concatUtm;
