@@ -1,3 +1,4 @@
+package structures;
 
 import java.time.LocalDateTime;
 

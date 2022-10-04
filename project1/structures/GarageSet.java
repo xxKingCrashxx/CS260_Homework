@@ -1,4 +1,4 @@
-
+package structures;
 public class GarageSet
 {
     private CarDataNode head;

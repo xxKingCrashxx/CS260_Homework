@@ -1,3 +1,4 @@
+package structures;
 public class GarageExitBag
 {
     CarDataNode head;
