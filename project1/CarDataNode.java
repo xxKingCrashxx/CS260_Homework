@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 public class CarDataNode 
 {
-    CarDataNode next;
-    CarDataNode prev;
+    private CarDataNode next;
+    private CarDataNode prev;
 
-    String liscenceNum;
+    private String liscenceNum;
 
-    LocalDateTime checkIn;
-    LocalDateTime checkout;
+    private LocalDateTime checkIn;
+    private LocalDateTime checkout;
 
     public CarDataNode(String liscenceNum, CarDataNode next, CarDataNode prev)
     {
@@ -20,9 +20,46 @@ public class CarDataNode
 
     }
 
-    public void addNodeAfter()
+    public CarDataNode getNext()
     {
+        return this.next;
+    }
 
+    public void setNext(CarDataNode next)
+    {
+        this.next = next;
+    }
+
+    public CarDataNode getPrev()
+    {
+        return this.prev;
+    }
+
+    public void setPrev(CarDataNode prev)
+    {
+        this.prev = prev;
+    }
+
+    public String getCarID()
+    {
+        return this.liscenceNum;
+    }
+
+    public void setCarID(String liscenseNum)
+    {
+        this.liscenceNum = liscenseNum;
+    }
+
+    public String getCheckInTime(){
+        return checkIn.toString();
+    }
+    public String getCheckOutTime(){
+        return checkout.toString();
+    }
+
+    public boolean addNodeAfter()
+    {
+        return false;
     }
 
     public String toString()
@@ -30,9 +67,9 @@ public class CarDataNode
         return "";
     }
 
-    public void removeNode()
+    public boolean removeNode()
     {
-
+        return false;
 
     }
 
