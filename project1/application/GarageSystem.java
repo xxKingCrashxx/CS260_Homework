@@ -16,7 +16,7 @@ public class GarageSystem extends Application{
     public void start(Stage primaryStage) throws Exception 
     {
         GridPane root = new GridPane();
-        Scene scene = new Scene(root, 800, 800);
+        Scene scene = new Scene(root, 500, 500);
         // TODO Auto-generated method stub
 
         primaryStage.setTitle("Garage Parking System");
