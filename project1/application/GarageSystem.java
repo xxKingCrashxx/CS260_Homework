@@ -1,6 +1,8 @@
 package application;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -15,9 +17,8 @@ public class GarageSystem extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception 
     {
-        GridPane root = new GridPane();
-        Scene scene = new Scene(root, 500, 500);
-        // TODO Auto-generated method stub
+        Parent root = FXMLLoader.load(getClass().getResource("mainLayout.fxml"));
+        Scene scene = new Scene(root);
 
         primaryStage.setTitle("Garage Parking System");
         primaryStage.setScene(scene);
