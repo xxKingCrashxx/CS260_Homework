@@ -8,6 +8,7 @@ public class GarageSet
     private CarDataNode tail;
     private int totalItems;
 
+    
     public GarageSet()
     {
         head = null;
