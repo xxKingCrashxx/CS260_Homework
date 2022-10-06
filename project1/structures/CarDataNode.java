@@ -1,7 +1,7 @@
 package structures;
 
 import java.time.LocalDateTime;
-
+import java.time.ZoneId;
 
 public class CarDataNode 
 {
@@ -10,14 +10,24 @@ public class CarDataNode
 
     private String liscenceNum;
 
-    private LocalDateTime checkIn;
-    private LocalDateTime checkout;
+    private String checkIn;
+    private String checkout;
 
     public CarDataNode(String liscenceNum, CarDataNode next, CarDataNode prev)
     {
         this.liscenceNum = liscenceNum;
         this.next = next;
         this.prev = prev;
+
+    }
+
+    public CarDataNode(String liscenceNum, CarDataNode next, CarDataNode prev, String checkIn)
+    {
+        this.liscenceNum = liscenceNum;
+        this.next = next;
+        this.prev = prev;
+
+        this.checkIn = checkIn;
 
     }
 
@@ -52,51 +62,86 @@ public class CarDataNode
     }
 
     public String getCheckInTime(){
-        return checkIn.toString();
+        return checkIn;
     }
     public String getCheckOutTime(){
-        return checkout.toString();
+        return checkout;
     }
 
-    public boolean addNodeAfter()
+    public void addNodeAfter(CarDataNode newNode)
     {
-        return false;
+        if(this.next != null)
+        {
+            this.next.prev = newNode;
+            newNode.next = this.next;
+            this.next = newNode;
+            newNode.prev = this;
+
+        }
+        else
+        {
+            this.next = newNode;
+            newNode.prev = this;
+            newNode.next = null;
+        }
     }
 
     @Override
     public String toString()
     {
-        return "";
+        return String.format("Liscence Number: %s\tClock In: %s\t", this.liscenceNum, this.checkIn);
     }
 
-    public boolean removeNode()
+    public void removeNode()
     {
-        return false;
+        this.prev.next = this.next;
+        this.next.prev = this.prev;
 
     }
 
     public void checkIn()
     {
-       checkIn = LocalDateTime.now();
+       checkIn = LocalDateTime.now().toString();
     }
 
     public void checkOut()
     {
-        checkout = LocalDateTime.now();
+        checkout = LocalDateTime.now().toString();
     }
 
     public boolean equals(CarDataNode node)
     {
-        return false;
+        if(!this.liscenceNum.equals(node.liscenceNum)){
+            return false;
+        }
+        return true;
     }
 
     public static CarDataNode getNodeFromID(CarDataNode head, String liscenceNum)
     {
+        CarDataNode cursor = head;
+        while(cursor != null){
+            if(cursor.liscenceNum.equals(liscenceNum)){
+                return cursor;
+            }
+            cursor = cursor.next;
+        }
         return null;
     }
 
     public static CarDataNode getNodeFromIndex(CarDataNode head, int index)
     {
+        CarDataNode cursor = head;
+        int nodeCount = 0;
+
+        while(cursor != null)
+        {
+            if(nodeCount == index)
+                return cursor;
+            cursor = cursor.next;
+            nodeCount++;
+
+        }
         return null;
     }
 
