@@ -18,9 +18,31 @@ public class GarageSet
         totalItems = 0;
     }
 
-    public void checkIn(int index)
+    public void checkIn(int index, String liscenceID)
     {
+        CarDataNode newNode = new CarDataNode(liscenceID, null, null);;
+        newNode.checkIn();
 
+        if(this.head == null)
+        {
+            head = newNode;
+            tail = newNode;
+            totalItems++;
+            return;
+        }
+        
+        CarDataNode searchNode = CarDataNode.getNodeFromIndex(head, index);   
+        if(!searchNode.equals(tail) && !hasDuplicate(newNode))
+        {
+                searchNode.addNodeAfter(newNode);
+                totalItems++;
+        }
+        else if(searchNode.equals(tail) && !hasDuplicate(newNode))
+        {
+            searchNode.addNodeAfter(newNode);
+            tail = tail.getNext();
+            totalItems++;
+        }  
     }
     public void checkIn(String liscenceID)
     {
@@ -52,12 +74,25 @@ public class GarageSet
 
     public void checkOut(int index)
     {
+        CarDataNode removeNode = CarDataNode.getNodeFromIndex(head, index);
+        removeNode.checkOut();
+        
+        if(removeNode.equals(head))
+            head = head.getNext();
+        else if(removeNode.equals(tail))
+            tail = tail.getPrev();
+        else
+            removeNode.removeNode();
+        
+        exitBag.add(removeNode);
+        removeNode = null;
 
     }
 
     public void checkOut(String liscenceID)
     {
         CarDataNode removeNode = CarDataNode.getNodeFromID(head, liscenceID);
+        removeNode.checkOut();
 
         if(removeNode.equals(head))
             head = head.getNext();
