@@ -61,10 +61,12 @@ public class CarDataNode
         this.liscenceNum = liscenseNum;
     }
 
-    public String getCheckInTime(){
+    public String getCheckInTime()
+    {
         return checkIn;
     }
-    public String getCheckOutTime(){
+    public String getCheckOutTime()
+    {
         return checkout;
     }
 
@@ -89,7 +91,7 @@ public class CarDataNode
     @Override
     public String toString()
     {
-        return String.format("Liscence Number: %s\tClock In: %s\t", this.liscenceNum, this.checkIn);
+        return String.format("Liscence Number: %s\tClock In: %s\tClock Out: %s", this.liscenceNum, this.checkIn, this.checkout);
     }
 
     public void removeNode()
@@ -111,7 +113,8 @@ public class CarDataNode
 
     public boolean equals(CarDataNode node)
     {
-        if(!this.liscenceNum.equals(node.liscenceNum)){
+        if(!this.liscenceNum.equals(node.liscenceNum))
+        {
             return false;
         }
         return true;
@@ -120,8 +123,10 @@ public class CarDataNode
     public static CarDataNode getNodeFromID(CarDataNode head, String liscenceNum)
     {
         CarDataNode cursor = head;
-        while(cursor != null){
-            if(cursor.liscenceNum.equals(liscenceNum)){
+        while(cursor != null)
+        {
+            if(cursor.liscenceNum.equals(liscenceNum))
+            {
                 return cursor;
             }
             cursor = cursor.next;
@@ -140,7 +145,6 @@ public class CarDataNode
                 return cursor;
             cursor = cursor.next;
             nodeCount++;
-
         }
         return null;
     }

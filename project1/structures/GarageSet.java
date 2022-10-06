@@ -1,6 +1,6 @@
 package structures;
 
-
+import javax.lang.model.util.ElementScanner14;
 
 public class GarageSet
 {
@@ -8,11 +8,13 @@ public class GarageSet
     private CarDataNode tail;
     private int totalItems;
 
-    
+    private GarageExitBag exitBag;
+
     public GarageSet()
     {
         head = null;
         tail = null;
+        exitBag = new GarageExitBag();
         totalItems = 0;
     }
 
@@ -23,6 +25,8 @@ public class GarageSet
     public void checkIn(String liscenceID)
     {
         CarDataNode newNode = new CarDataNode(liscenceID, null, null);
+        newNode.checkIn();
+
         if(this.head == null)
         {
             head = newNode;
@@ -50,9 +54,26 @@ public class GarageSet
     {
 
     }
+
     public void checkOut(String liscenceID)
     {
+        CarDataNode removeNode = CarDataNode.getNodeFromID(head, liscenceID);
 
+        if(removeNode.equals(head))
+            head = head.getNext();
+        else if(removeNode.equals(tail))
+            tail = tail.getPrev();
+        else
+            removeNode.removeNode();
+        
+        exitBag.add(removeNode);
+        removeNode = null;
+
+    }
+
+    public GarageExitBag getExitBag()
+    {
+        return this.exitBag;
     }
 
     private boolean hasDuplicate(CarDataNode node)
@@ -71,7 +92,14 @@ public class GarageSet
     @Override
     public String toString()
     {
-        return "";
+        StringBuilder builder = new StringBuilder();
+        CarDataNode cursor = head;
+
+        while(cursor != null){
+            builder.append(cursor.toString() + "\n");
+            cursor = cursor.getNext();
+        }
+        return builder.toString();
     }
 
     public static void loadGSData()
