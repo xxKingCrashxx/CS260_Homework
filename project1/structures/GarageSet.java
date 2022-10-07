@@ -111,6 +111,11 @@ public class GarageSet
         return this.exitBag;
     }
 
+    public CarDataNode getHead()
+    {
+        return this.head;
+    }
+
     private boolean hasDuplicate(CarDataNode node)
     {
         CarDataNode cursor = head;
