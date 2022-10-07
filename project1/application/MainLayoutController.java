@@ -9,7 +9,7 @@ import structures.CarDataNode;
 import structures.GarageExitBag;
 import structures.GarageSet;
 
-public class Controller 
+public class MainLayoutController 
 {
     @FXML
     private TextField txtRemoveCar;
