@@ -54,7 +54,7 @@ public class MainLayoutController implements Initializable
         else
         {
             parkedCars.checkIn(txtAddCar.getText());
-            lstParkedCarNodes.getItems().add("dfdfdsfs");
+            lstParkedCarNodes.getItems().addAll("dfdfdsfs");
 
             CarDataNode cursor = parkedCars.getHead();
         }

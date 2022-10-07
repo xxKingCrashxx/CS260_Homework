@@ -19,7 +19,7 @@ public class GarageExitBag
 
     public void add(CarDataNode node)
     {
-        CarDataNode newNode = new CarDataNode(node.getCarID(), null, null);
+        CarDataNode newNode = node.clone();
 
         if(this.head == null)
         {
@@ -50,11 +50,16 @@ public class GarageExitBag
     public void dumpOutputData()
     {
         LocalDate currentDate = LocalDate.now();
-        File file = new File("output/" + currentDate.toString() + ".txt");
+        File file = new File(currentDate.toString() + ".txt");
         
         try 
         {
-            FileWriter fWriter = new FileWriter(file);
+            if(!file.exists())
+            {
+                file.createNewFile();
+            }
+
+            FileWriter fWriter = new FileWriter(file, true);
             CarDataNode cursor = head;
 
             while(cursor != null)
@@ -67,6 +72,12 @@ public class GarageExitBag
         catch (IOException e) 
         {
             e.printStackTrace();
+            System.out.println("Could not create file for an unknown reason.");
+        }
+        catch(SecurityException se)
+        {
+            se.printStackTrace();
+            System.out.println("A security error occured while trying to create the file.");
         }
         
     }

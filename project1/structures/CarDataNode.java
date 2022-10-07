@@ -3,7 +3,8 @@ package structures;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-public class CarDataNode 
+
+public class CarDataNode implements Cloneable
 {
     private CarDataNode next;
     private CarDataNode prev;
@@ -21,13 +22,14 @@ public class CarDataNode
 
     }
 
-    public CarDataNode(String liscenceNum, CarDataNode next, CarDataNode prev, String checkIn)
+    public CarDataNode(String liscenceNum, CarDataNode next, CarDataNode prev, String checkIn, String checkout)
     {
         this.liscenceNum = liscenceNum;
         this.next = next;
         this.prev = prev;
 
         this.checkIn = checkIn;
+        this.checkout = checkout;
 
     }
 
@@ -96,8 +98,14 @@ public class CarDataNode
 
     public void removeNode()
     {
-        this.prev.next = this.next;
-        this.next.prev = this.prev;
+        
+        if (this.next != null) {
+            this.next.prev = this.prev;
+        }
+ 
+        if (this.prev != null) {
+            this.prev.next = this.next;
+        }
 
     }
 
@@ -148,5 +156,20 @@ public class CarDataNode
         }
         return null;
     }
-
+    @Override
+    public CarDataNode clone()
+    {
+        CarDataNode copiedNode = null;
+        try 
+        {
+            copiedNode = (CarDataNode)super.clone();
+            copiedNode.next = null;
+            copiedNode.prev = null;
+        } 
+        catch (CloneNotSupportedException e) 
+        {
+            e.printStackTrace();
+        }
+        return copiedNode;
+    }
 }

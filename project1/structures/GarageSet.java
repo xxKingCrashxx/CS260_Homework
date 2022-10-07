@@ -1,7 +1,5 @@
 package structures;
 
-import javax.lang.model.util.ElementScanner14;
-
 public class GarageSet
 {
     private CarDataNode head;
@@ -53,6 +51,7 @@ public class GarageSet
         {
             head = newNode;
             tail = newNode;
+            totalItems++;
         }
         else
         {
@@ -60,49 +59,59 @@ public class GarageSet
 
             if(!hasDuplicate(newNode))
             {
-                while(searchNode.getNext() != null){
+                while(searchNode.getNext() != null)
+                {
                     searchNode = searchNode.getNext();
                 }
+
                 searchNode.addNodeAfter(newNode);
                 tail = newNode;
+                totalItems++;
             }
-
         }
-        totalItems++;
-
     }
 
     public void checkOut(int index)
     {
-        CarDataNode removeNode = CarDataNode.getNodeFromIndex(head, index);
-        removeNode.checkOut();
+        if(totalItems == 0)
+            return;
         
-        if(removeNode.equals(head))
+        CarDataNode delNode = CarDataNode.getNodeFromIndex(head, index);
+        if(delNode == null)
+            return;
+            
+        delNode.checkOut();
+        if(delNode.equals(head))
             head = head.getNext();
-        else if(removeNode.equals(tail))
+            
+        if (delNode.equals(tail)){
             tail = tail.getPrev();
-        else
-            removeNode.removeNode();
-        
-        exitBag.add(removeNode);
-        removeNode = null;
+        }
+        exitBag.add(delNode);
+        delNode.removeNode();
+        totalItems--;
 
     }
 
     public void checkOut(String liscenceID)
     {
-        CarDataNode removeNode = CarDataNode.getNodeFromID(head, liscenceID);
-        removeNode.checkOut();
-
-        if(removeNode.equals(head))
-            head = head.getNext();
-        else if(removeNode.equals(tail))
-            tail = tail.getPrev();
-        else
-            removeNode.removeNode();
+        if(totalItems == 0)
+            return;
         
-        exitBag.add(removeNode);
-        removeNode = null;
+        CarDataNode delNode = CarDataNode.getNodeFromID(head, liscenceID);
+        if(delNode == null)
+            return;
+            
+        delNode.checkOut();
+        if(delNode.equals(head))
+            head = head.getNext();
+            
+        if (delNode.equals(tail))
+            tail = tail.getPrev();
+            
+        exitBag.add(delNode);
+        delNode.removeNode();
+        totalItems--;
 
     }
 
@@ -114,6 +123,16 @@ public class GarageSet
     public CarDataNode getHead()
     {
         return this.head;
+    }
+    
+    public CarDataNode getTail()
+    {
+        return this.tail;
+    }
+    
+    public int getTotalItems()
+    {
+        return this.totalItems;
     }
 
     private boolean hasDuplicate(CarDataNode node)
