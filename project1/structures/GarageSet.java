@@ -30,12 +30,12 @@ public class GarageSet
         }
         
         CarDataNode searchNode = CarDataNode.getNodeFromIndex(head, index);   
-        if(!searchNode.equals(tail) && !hasDuplicate(newNode))
+        if(!searchNode.equals(tail) && !hasDuplicate(newNode.getCarID()))
         {
                 searchNode.addNodeAfter(newNode);
                 totalItems++;
         }
-        else if(searchNode.equals(tail) && !hasDuplicate(newNode))
+        else if(searchNode.equals(tail) && !hasDuplicate(newNode.getCarID()))
         {
             searchNode.addNodeAfter(newNode);
             tail = tail.getNext();
@@ -57,7 +57,7 @@ public class GarageSet
         {
             CarDataNode searchNode = head;
 
-            if(!hasDuplicate(newNode))
+            if(!hasDuplicate(newNode.getCarID()))
             {
                 while(searchNode.getNext() != null)
                 {
@@ -135,13 +135,13 @@ public class GarageSet
         return this.totalItems;
     }
 
-    private boolean hasDuplicate(CarDataNode node)
+    public boolean hasDuplicate(String id)
     {
         CarDataNode cursor = head;
 
         for (; cursor != null; cursor = cursor.getNext()) 
         {
-            if(cursor.getCarID().equals(node.getCarID())){
+            if(cursor.getCarID().equals(id)){
                 return true;
             }
         }

@@ -81,4 +81,12 @@ public class GarageExitBag
         }
         
     }
+    public CarDataNode getLastNode(){
+        CarDataNode cursor = this.head;
+
+        while(cursor.getNext() != null){
+            cursor = cursor.getNext();
+        }
+        return cursor;
+    }
 }

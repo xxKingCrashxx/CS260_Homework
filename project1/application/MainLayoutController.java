@@ -53,12 +53,31 @@ public class MainLayoutController implements Initializable
         }
         else
         {
-            parkedCars.checkIn(txtAddCar.getText());
-            lstParkedCarNodes.getItems().addAll("dfdfdsfs");
-
-            CarDataNode cursor = parkedCars.getHead();
+            
+            if(!parkedCars.hasDuplicate(txtAddCar.getText())){
+                parkedCars.checkIn(txtAddCar.getText());
+                lstParkedCarNodes.getItems().add(parkedCars.getTail().toString());
+            }
         }
     }
+
+    public void removeCarByID(MouseEvent mouseEvent)
+    {
+        if(txtRemoveCar.getText().equals(""))
+        {
+            Alert alert = new Alert(AlertType.ERROR, "There was no input in the textbox");
+            alert.show();
+        }
+        else
+        {
+            parkedCars.checkOut(txtRemoveCar.getText());
+            lstRemovedCarNodes.getItems().add(removedCars.getLastNode().toString());
+            lstParkedCarNodes.getItems().remove(removedCars.getLastNode().toString());
+
+        }
+
+    }
+
 
     
     
