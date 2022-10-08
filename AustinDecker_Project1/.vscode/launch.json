@@ -6,17 +6,16 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch GarageSystem",
+            "name": "Launch Current File",
             "request": "launch",
-            "mainClass": "application.GarageSystem",
-            "projectName": "project1_21e8fd87"
+            "mainClass": "${file}"
         },
         {
             "type": "java",
             "name": "Launch GarageSystem",
             "request": "launch",
             "mainClass": "application.GarageSystem",
-            "projectName": "project1"
+            "projectName": "AustinDecker_Project1_92e48178"
         }
     ]
 }
