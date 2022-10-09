@@ -44,9 +44,11 @@ public class MainLayoutController implements Initializable
 
     public void addCarByID(MouseEvent mouseEvent)
     {
+        Alert alert;
+
         if(txtAddCar.getText().equals(""))
         {
-            Alert alert = new Alert(AlertType.ERROR, "There was no input in the textbox.");
+            alert = new Alert(AlertType.ERROR, "There was no input in the textbox.");
             alert.show();
         }
         else
@@ -60,7 +62,7 @@ public class MainLayoutController implements Initializable
             }
             else
             {
-                Alert alert = new Alert(AlertType.ERROR, "This item has already been added.");
+                alert = new Alert(AlertType.ERROR, "This item has already been added.");
                 alert.show();
             }
         }
@@ -68,9 +70,11 @@ public class MainLayoutController implements Initializable
 
     public void removeCarByID(MouseEvent mouseEvent)
     {
+        Alert alert;
+        
         if(txtRemoveCar.getText().equals(""))
         {
-            Alert alert = new Alert(AlertType.ERROR, "There was no input in the textbox");
+            alert = new Alert(AlertType.ERROR, "There was no input in the textbox");
             alert.show();
         }
         else
@@ -83,7 +87,7 @@ public class MainLayoutController implements Initializable
                 lstRemovedCarNodes.getItems().addAll(removedCars.toArray());
             }
             else{
-                Alert alert = new Alert(AlertType.ERROR, "The item you are trying to remove does not exist.");
+                alert = new Alert(AlertType.ERROR, "The item you are trying to remove does not exist.");
                 alert.show();
             }  
 
