@@ -1,5 +1,6 @@
 package structure;
 
+import java.lang.annotation.Documented;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -14,6 +15,13 @@ public class CarDataNode implements Cloneable
     private String checkIn;
     private String checkout;
 
+    /**
+     * Constructor for the CarDataNode Object.
+     * Takes 3 parameters requiring to make Object.
+     * @param liscenceNum id of the car
+     * @param next next Object in the linkedlist
+     * @param prev previous Object in the linkedlist
+     */
     public CarDataNode(String liscenceNum, CarDataNode next, CarDataNode prev)
     {
         this.liscenceNum = liscenceNum;
@@ -22,6 +30,16 @@ public class CarDataNode implements Cloneable
 
     }
 
+    /**
+     * Constructor of the CarDataNode Object.
+     * Takes 5 parameters requiring to make object.
+     * @param liscenceNum id of the car.
+     * @param next next Object in the linkedlist
+     * @param prev previous Object in the linkedlist.
+     * @param checkIn check-in date/time of the car. 
+     * @param checkout check-out date/time of the car.
+     * 
+     */
     public CarDataNode(String liscenceNum, CarDataNode next, CarDataNode prev, String checkIn, String checkout)
     {
         this.liscenceNum = liscenceNum;
@@ -33,21 +51,37 @@ public class CarDataNode implements Cloneable
 
     }
 
+    /**
+     * Gets the next CarDataNode Object in the linkedlist
+     * @return CarDataNode
+     */
     public CarDataNode getNext()
     {
         return this.next;
     }
 
+    /**
+     * sets the next CarDataNode Object in the linkedlist
+     * @return void
+     */
     public void setNext(CarDataNode next)
     {
         this.next = next;
     }
 
+    /**
+     * Gets the prevous CarDataNode Object in the linkedlist
+     * @return CarDataNode
+     */
     public CarDataNode getPrev()
     {
         return this.prev;
     }
 
+    /**
+     * Sets the previous CarDataNode Object in the linkedlist
+     * @return void
+     */
     public void setPrev(CarDataNode prev)
     {
         this.prev = prev;
