@@ -60,7 +60,8 @@ public class MainLayoutController implements Initializable
             }
             else
             {
-                Alert alert = new Alert(AlertType.ERROR, "This item has already been added.")
+                Alert alert = new Alert(AlertType.ERROR, "This item has already been added.");
+                alert.show();
             }
         }
     }
