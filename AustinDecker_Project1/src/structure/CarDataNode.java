@@ -1,10 +1,9 @@
 package structure;
 
-import java.lang.annotation.Documented;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-
-
+/**
+ * CarDataNode class which uses the doubly linked list data structure.
+ */
 public class CarDataNode implements Cloneable
 {
     private CarDataNode next;
@@ -62,6 +61,7 @@ public class CarDataNode implements Cloneable
 
     /**
      * sets the next CarDataNode Object in the linkedlist
+     * @param next CarDataNode Object
      * @return void
      */
     public void setNext(CarDataNode next)
@@ -80,6 +80,7 @@ public class CarDataNode implements Cloneable
 
     /**
      * Sets the previous CarDataNode Object in the linkedlist
+     * @param prev CarDataNode Object
      * @return void
      */
     public void setPrev(CarDataNode prev)
@@ -87,25 +88,46 @@ public class CarDataNode implements Cloneable
         this.prev = prev;
     }
 
+     /**
+     * gets the CarDataNode Object ID
+     * @return String
+     */
     public String getCarID()
     {
         return this.liscenceNum;
     }
 
+    /**
+     * sets the CarDataNode Object ID
+     * @param liscenseNum String
+     * @return void
+     */
     public void setCarID(String liscenseNum)
     {
         this.liscenceNum = liscenseNum;
     }
 
+    /**
+     * gets the CarDataNode Object check in time
+     * @return String of LocalDataTime.now();
+     */
     public String getCheckInTime()
     {
         return checkIn;
     }
+    
+    /**
+     * gets the CarDataNode Object check out time
+     * @return String of LocalDataTime.now();
+     */
     public String getCheckOutTime()
     {
         return checkout;
     }
-
+    /**
+     * A method that takes in a CarDataNode Object and adds the node after the currently called CarDataNode Object.
+     * @param newNode
+     */
     public void addNodeAfter(CarDataNode newNode)
     {
         if(this.next != null)
@@ -124,12 +146,18 @@ public class CarDataNode implements Cloneable
         }
     }
 
+    /**
+     * returns the CarDataNode's Data as a String
+     */
     @Override
     public String toString()
     {
         return String.format("Liscence Number: %s\tClock In: %s\tClock Out: %s", this.liscenceNum, this.checkIn, this.checkout);
     }
 
+    /**
+     * removes the currently called Node from the linkedList
+     */
     public void removeNode()
     {
         
@@ -143,16 +171,27 @@ public class CarDataNode implements Cloneable
 
     }
 
+    /**
+     * Assigns the called CarDataNode Object's checkIn variable to the current date and time.
+     */
     public void checkIn()
     {
        checkIn = LocalDateTime.now().toString();
     }
 
+    /**
+     * Assigns the called CarDataNode Object's checkOut variable to the current date and time.
+     */
     public void checkOut()
     {
         checkout = LocalDateTime.now().toString();
     }
 
+    /**
+     * compares the called CarDataNode object to another CarDataNode object specified in the peremeters as node.  The method compares the liscenseID of both objects and returns true if the liscenseID matches.
+     * @param node
+     * @return boolean
+     */
     public boolean equals(CarDataNode node)
     {
         if(!this.liscenceNum.equals(node.liscenceNum))
@@ -161,7 +200,13 @@ public class CarDataNode implements Cloneable
         }
         return true;
     }
-
+    /**
+     * static method that searches through the head of the CarDataNode object until it finds a CarDataNode object with the matching liscenseID.
+     * @param head CarDataNode Object.
+     * @param liscenceNum ID of CarDataNode to find.
+     * @return CarDataNode
+     * 
+     */
     public static CarDataNode getNodeFromID(CarDataNode head, String liscenceNum)
     {
         CarDataNode cursor = head;
@@ -176,6 +221,13 @@ public class CarDataNode implements Cloneable
         return null;
     }
 
+    /**
+     * static method that searches through the head of the CarDataNode object until it finds a CarDataNode object in the specified index position
+     * @param head CarDataNode Object.
+     * @param index integer 
+     * @return CarDataNode
+     * 
+     */
     public static CarDataNode getNodeFromIndex(CarDataNode head, int index)
     {
         CarDataNode cursor = head;

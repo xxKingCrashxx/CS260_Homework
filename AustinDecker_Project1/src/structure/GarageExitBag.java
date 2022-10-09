@@ -5,18 +5,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * GarageBag class which stores and writes out the data of the linkedlist.
+ */
 public class GarageExitBag
 {
     private CarDataNode head;
     private int totalItems;
 
+    /**
+     * default constructor for the GarageExitBag
+     */
     public GarageExitBag()
     {
         totalItems = 0;
         head = null;
 
     }
-
+    /**
+     * Method that copies the CarDataNode object and then adds the copied object to the back of the linkedlist.
+     * @param node
+     */
     public void add(CarDataNode node)
     {
         CarDataNode newNode = node.clone();
@@ -37,16 +46,26 @@ public class GarageExitBag
         }
         totalItems++;
     }
-
+    /**
+     * returns the number of CarDataNode objects in the GarageExitBag's linkedList
+     * @return int
+     */
     public int getSize()
     {
         return this.totalItems;
     }
 
+    /**
+     * returns a CarDataNode object that represents the head of the linkedList
+     * @return CarDataNode
+     */
     public CarDataNode getHead(){
         return this.head;
     }
 
+    /**
+     * Method that dumps the contents of the GarageExitBag into a file and saves it as the current date.
+     */
     public void dumpOutputData()
     {
         LocalDate currentDate = LocalDate.now();
@@ -81,6 +100,10 @@ public class GarageExitBag
         }
         
     }
+    /**
+     * returns a CarDataNode Object that is at the end of the linked list
+     * @return
+     */
     public CarDataNode getLastNode(){
         CarDataNode cursor = this.head;
 
@@ -89,7 +112,10 @@ public class GarageExitBag
         }
         return cursor;
     }
-    
+    /**
+     * Method that returns a String array of all the nodes stored in the GarageBag in their string representation.
+     * @return String[]
+     */
     public String[] toArray(){
         int arraySize = totalItems;
         String contentArray[] = new String[arraySize];

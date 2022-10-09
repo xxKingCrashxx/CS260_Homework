@@ -1,5 +1,7 @@
 package structure;
-
+/**
+ * GarageSet class which stores and manipulates a CarDataNode linkedlist structure.
+ */
 public class GarageSet
 {
     private CarDataNode head;
@@ -8,6 +10,9 @@ public class GarageSet
 
     private GarageExitBag exitBag;
 
+    /**
+     * Constructor for the GarageSet
+     */
     public GarageSet()
     {
         head = null;
@@ -16,6 +21,11 @@ public class GarageSet
         totalItems = 0;
     }
 
+    /**
+     * method that adds the CarDataNode object into the LinkedListSet in the position after the specified index.  It checks-in the CarDataNode Object and puts it into the linked list only if the object's liscenseID is different from all the other nodes in the linkedlist.
+     * @param index
+     * @param liscenceID
+     */
     public void checkIn(int index, String liscenceID)
     {
         CarDataNode newNode = new CarDataNode(liscenceID, null, null);;
@@ -42,6 +52,10 @@ public class GarageSet
             totalItems++;
         }  
     }
+    /**
+     * Method that adds and checks in a CarDataNode object with the specified liscenseID.  It only adds the node into the linkedList if there is no other node with the same liscense id.  The node is added at the end of the linkedlist.
+     * @param liscenceID
+     */
     public void checkIn(String liscenceID)
     {
         CarDataNode newNode = new CarDataNode(liscenceID, null, null);
@@ -70,7 +84,10 @@ public class GarageSet
             }
         }
     }
-
+    /**
+     * Method that checks out and removes the CarDataNode object found at the specified index.  Removed Node is added to the GarageExitBag.
+     * @param index
+     */
     public void checkOut(int index)
     {
         if(totalItems == 0)
@@ -93,6 +110,10 @@ public class GarageSet
 
     }
 
+    /**
+     * Method that checks out and removes the CarDataNode object with the specified liscenseID.  Removed Node is added to the GarageExitBag.
+     * @param liscenseID
+     */
     public void checkOut(String liscenceID)
     {
         if(totalItems == 0)
@@ -114,27 +135,47 @@ public class GarageSet
         totalItems--;
 
     }
-
+    /**
+     * Getter method that gets a refrence to the GarageExitBag object which stores all of the removed nodes in another linked list.
+     * @return GarageExitBag
+     */
     public GarageExitBag getExitBag()
     {
         return this.exitBag;
     }
 
+    /**
+     * Gets the head of the GarageSet linkedlist.
+     * @return CarDataNode
+     */
     public CarDataNode getHead()
     {
         return this.head;
     }
     
+    /**
+     * Gets the tail of the GarageSet linkedList
+     * @return
+     */
     public CarDataNode getTail()
     {
         return this.tail;
     }
     
+    /**
+     * gets the total number of CarDataNodes in the GarageSet
+     * @return int
+     */
     public int getTotalItems()
     {
         return this.totalItems;
     }
 
+    /**
+     * Method that searches through the GarageSet and returns true or false whether the GarageSet contains a node with a matching liscenseID.
+     * @param id 
+     * @return boolean
+     */
     public boolean hasDuplicate(String id)
     {
         CarDataNode cursor = head;
@@ -148,6 +189,10 @@ public class GarageSet
         return false;
     }
 
+    /**
+     * Method that returns a String array of all the nodes in their string representation.
+     * @return String[]
+     */
     public String[] toArray(){
         int arraySize = totalItems;
         String contentArray[] = new String[arraySize];
@@ -160,6 +205,9 @@ public class GarageSet
         return contentArray;
     }
 
+    /**
+     * GarageSet to string method.  Returns a string representation of the GarageSet.
+     */
     @Override
     public String toString()
     {
@@ -173,11 +221,16 @@ public class GarageSet
         return builder.toString();
     }
 
+    /**
+     * Static method that reads in data from a file and fills up the GarageSet Object.
+     */
     public static void loadGSData()
     {
 
     }
-
+    /**
+     * Static method that writes the string representation of all the CarDataNodes in the GarageSet in a format which will be used to load in the GarageSet Object later.
+     */
     public static void saveGSData()
     {
         
