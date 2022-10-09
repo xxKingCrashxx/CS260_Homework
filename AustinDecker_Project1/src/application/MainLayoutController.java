@@ -1,7 +1,6 @@
 package application;
 
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -11,7 +10,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
-import structure.CarDataNode;
 import structure.GarageExitBag;
 import structure.GarageSet;
 
@@ -27,7 +25,7 @@ public class MainLayoutController implements Initializable
     private ListView<String> lstRemovedCarNodes;
 
     private GarageSet parkedCars = new GarageSet();
-    private GarageExitBag removedCars = new GarageExitBag();
+    private GarageExitBag removedCars = parkedCars.getExitBag();
 
     public MainLayoutController()
     {
@@ -48,15 +46,21 @@ public class MainLayoutController implements Initializable
     {
         if(txtAddCar.getText().equals(""))
         {
-            Alert alert = new Alert(AlertType.ERROR, "There was no input in the textbox");
+            Alert alert = new Alert(AlertType.ERROR, "There was no input in the textbox.");
             alert.show();
         }
         else
         {
-            
-            if(!parkedCars.hasDuplicate(txtAddCar.getText())){
+
+            if(!parkedCars.hasDuplicate(txtAddCar.getText()))
+            {
+                lstParkedCarNodes.getItems().clear();
                 parkedCars.checkIn(txtAddCar.getText());
-                lstParkedCarNodes.getItems().add(parkedCars.getTail().toString());
+                lstParkedCarNodes.getItems().addAll(parkedCars.toArray());
+            }
+            else
+            {
+                Alert alert = new Alert(AlertType.ERROR, "This item has already been added.")
             }
         }
     }
@@ -70,15 +74,20 @@ public class MainLayoutController implements Initializable
         }
         else
         {
-            parkedCars.checkOut(txtRemoveCar.getText());
-            lstRemovedCarNodes.getItems().add(removedCars.getLastNode().toString());
-            lstParkedCarNodes.getItems().remove(removedCars.getLastNode().toString());
+            if(parkedCars.hasDuplicate(txtRemoveCar.getText())){
+                lstParkedCarNodes.getItems().clear();
+                lstRemovedCarNodes.getItems().clear();
+                parkedCars.checkOut(txtRemoveCar.getText());
+                lstParkedCarNodes.getItems().addAll(parkedCars.toArray());
+                lstRemovedCarNodes.getItems().addAll(removedCars.toArray());
+            }
+            else{
+                Alert alert = new Alert(AlertType.ERROR, "The item you are trying to remove does not exist.");
+                alert.show();
+            }  
 
         }
 
     }
 
-
-    
-    
 }
