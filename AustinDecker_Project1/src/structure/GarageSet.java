@@ -148,6 +148,18 @@ public class GarageSet
         return false;
     }
 
+    public String[] toArray(){
+        int arraySize = totalItems;
+        String contentArray[] = new String[arraySize];
+
+        CarDataNode cursor = head;
+        for (int i = 0; i < contentArray.length; i++, cursor = cursor.getNext()) {
+            contentArray[i] = cursor.toString();
+        }
+
+        return contentArray;
+    }
+
     @Override
     public String toString()
     {
