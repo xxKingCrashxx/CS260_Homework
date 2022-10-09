@@ -167,7 +167,7 @@ public class GarageSet
         CarDataNode cursor = head;
 
         while(cursor != null){
-            builder.append(cursor.toString() + "\n");
+            builder.append(cursor.getCarID() + "\t" + cursor.getCheckInTime() + "\n");
             cursor = cursor.getNext();
         }
         return builder.toString();
