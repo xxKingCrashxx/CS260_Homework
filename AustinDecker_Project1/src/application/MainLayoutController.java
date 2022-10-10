@@ -25,7 +25,7 @@ public class MainLayoutController implements Initializable
     private ListView<String> lstRemovedCarNodes;
 
     private GarageSet parkedCars = new GarageSet();
-    private GarageExitBag removedCars = parkedCars.getExitBag();
+    private GarageExitBag removedCars = new GarageExitBag();
 
     public MainLayoutController()
     {
@@ -82,7 +82,8 @@ public class MainLayoutController implements Initializable
             if(parkedCars.hasDuplicate(txtRemoveCar.getText())){
                 lstParkedCarNodes.getItems().clear();
                 lstRemovedCarNodes.getItems().clear();
-                parkedCars.checkOut(txtRemoveCar.getText());
+                
+                parkedCars.checkOut(txtRemoveCar.getText(), removedCars);
                 lstParkedCarNodes.getItems().addAll(parkedCars.toArray());
                 lstRemovedCarNodes.getItems().addAll(removedCars.toArray());
             }

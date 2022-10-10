@@ -8,8 +8,6 @@ public class GarageSet
     private CarDataNode tail;
     private int totalItems;
 
-    private GarageExitBag exitBag;
-
     /**
      * Constructor for the GarageSet
      */
@@ -17,7 +15,6 @@ public class GarageSet
     {
         head = null;
         tail = null;
-        exitBag = new GarageExitBag();
         totalItems = 0;
     }
 
@@ -87,8 +84,9 @@ public class GarageSet
     /**
      * Method that checks out and removes the CarDataNode object found at the specified index.  Removed Node is added to the GarageExitBag.
      * @param index
+     * @param exitBag
      */
-    public void checkOut(int index)
+    public void checkOut(int index, GarageExitBag exitBag)
     {
         if(totalItems == 0)
             return;
@@ -111,10 +109,11 @@ public class GarageSet
     }
 
     /**
-     * Method that checks out and removes the CarDataNode object with the specified liscenseID.  Removed Node is added to the GarageExitBag.
-     * @param liscenseID
+     * Method that checks out the node with the specified liscenseID and sends the node into the exitBag object.
+     * @param liscenceID
+     * @param exitBag
      */
-    public void checkOut(String liscenceID)
+    public void checkOut(String liscenceID, GarageExitBag exitBag)
     {
         if(totalItems == 0)
             return;
@@ -134,14 +133,6 @@ public class GarageSet
         delNode.removeNode();
         totalItems--;
 
-    }
-    /**
-     * Getter method that gets a refrence to the GarageExitBag object which stores all of the removed nodes in another linked list.
-     * @return GarageExitBag
-     */
-    public GarageExitBag getExitBag()
-    {
-        return this.exitBag;
     }
 
     /**
