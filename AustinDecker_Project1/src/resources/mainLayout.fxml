@@ -16,13 +16,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="mainLayoutPane" fx:id="mainLayoutView" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainLayoutController">
+<BorderPane id="mainLayoutPane" fx:id="mainLayoutView" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainLayoutController">
    <top>
-      <MenuBar id="mainMenuBar" fx:id="mainMenu" prefHeight="29.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+      <MenuBar id="mainMenuBar" fx:id="mainMenu" prefHeight="29.0" prefWidth="764.0" BorderPane.alignment="CENTER">
          <menus>
             <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem id="mnuItemSaveExit" fx:id="menuItemExit" mnemonicParsing="false" text="Save and Exit" />
+                  <MenuItem id="mnuItemSaveExit" fx:id="menuItemExit" mnemonicParsing="false" onAction="#saveAndExit" text="Save and Exit" />
                </items>
             </Menu>
          </menus>
@@ -52,41 +52,6 @@
          </children>
       </VBox>
    </left>
-   <center>
-      <HBox prefHeight="463.0" prefWidth="704.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="463.0" prefWidth="385.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="248.0" text="Parked">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                  <ListView fx:id="lstParkedCarNodes" prefHeight="449.0" prefWidth="272.0">
-                     <contextMenu>
-                        <ContextMenu id="ctxMenu">
-                          <items>
-                            <MenuItem id="mnuItemAddCar" mnemonicParsing="false" text="Add Car" />
-                              <MenuItem mnemonicParsing="false" text="Remove Car" />
-                          </items>
-                        </ContextMenu>
-                     </contextMenu>
-                     <tooltip>
-                        <Tooltip id="tipParkedCarsControl" text="Right click on item to add/remove a car." />
-                     </tooltip></ListView>
-               </children>
-            </VBox>
-            <VBox prefHeight="382.0" prefWidth="272.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="248.0" text="Left Parking">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-                  <ListView fx:id="lstRemovedCarNodes" prefHeight="445.0" prefWidth="275.0" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </center>
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
@@ -97,4 +62,43 @@
          </padding>
       </ButtonBar>
    </bottom>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="382.0" prefWidth="179.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="248.0" text="Parked">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <ListView fx:id="lstParkedCarNodes" prefHeight="281.0" prefWidth="526.0">
+                     <contextMenu>
+                        <ContextMenu id="ctxMenu">
+                          <items>
+                            <MenuItem id="mnuItemAddCar" fx:id="mnuAddCar" mnemonicParsing="false" onAction="#addCarByIndex" text="Add Car" />
+                              <MenuItem fx:id="mnuRemoveCar" mnemonicParsing="false" onAction="#removeCarByIndex" text="Remove Car" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                     <tooltip>
+                        <Tooltip id="tipParkedCarsControl" text="Right click on item to add/remove a car." />
+                     </tooltip></ListView>
+                  <VBox prefHeight="312.0" prefWidth="526.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="248.0" text="Left Parking">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <ListView fx:id="lstRemovedCarNodes" prefHeight="207.0" prefWidth="526.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+   <padding>
+      <Insets right="5.0" />
+   </padding>
 </BorderPane>

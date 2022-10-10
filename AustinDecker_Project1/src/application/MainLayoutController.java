@@ -1,19 +1,23 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import structure.GarageExitBag;
 import structure.GarageSet;
 
-public class MainLayoutController implements Initializable
+public class MainLayoutController
 {
     @FXML
     private TextField txtRemoveCar;
@@ -23,21 +27,20 @@ public class MainLayoutController implements Initializable
     private ListView<String> lstParkedCarNodes;
     @FXML
     private ListView<String> lstRemovedCarNodes;
+    @FXML
+    private MenuItem mnuAddCar;
+    @FXML
+    private MenuItem mnuRemoveCar;
 
     private GarageSet parkedCars = new GarageSet();
     private GarageExitBag removedCars = new GarageExitBag();
+    private InputBoxLayoutController inputBoxLayoutController; 
 
-    public MainLayoutController()
+    public void saveAndExit(ActionEvent e)
     {
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
         
     }
-
-    public void exitProgram(MouseEvent mouseEvent)
+    public void exitProgram(MouseEvent me)
     {
         System.exit(0);
     }
@@ -56,9 +59,8 @@ public class MainLayoutController implements Initializable
 
             if(!parkedCars.hasDuplicate(txtAddCar.getText()))
             {
-                lstParkedCarNodes.getItems().clear();
                 parkedCars.checkIn(txtAddCar.getText());
-                lstParkedCarNodes.getItems().addAll(parkedCars.toArray());
+                updateListView();
             }
             else
             {
@@ -80,12 +82,9 @@ public class MainLayoutController implements Initializable
         else
         {
             if(parkedCars.hasDuplicate(txtRemoveCar.getText())){
-                lstParkedCarNodes.getItems().clear();
-                lstRemovedCarNodes.getItems().clear();
-                
+
                 parkedCars.checkOut(txtRemoveCar.getText(), removedCars);
-                lstParkedCarNodes.getItems().addAll(parkedCars.toArray());
-                lstRemovedCarNodes.getItems().addAll(removedCars.toArray());
+                updateListView();
             }
             else{
                 alert = new Alert(AlertType.ERROR, "The item you are trying to remove does not exist.");
@@ -93,6 +92,37 @@ public class MainLayoutController implements Initializable
             }  
 
         }
+
+    }
+
+    public void addCarByIndex(ActionEvent ae)
+    {
+        
+    }
+
+    public void removeCarByIndex(ActionEvent ae)
+    {
+        Alert alert;
+        int selectedIndex = lstParkedCarNodes.getSelectionModel().getSelectedIndex();
+
+        if(selectedIndex < 0)
+        {
+            alert = new Alert(AlertType.ERROR, "No car was selected.");
+            alert.show();
+            return;
+        }
+        parkedCars.checkOut(selectedIndex, removedCars);
+        updateListView();
+
+    }
+
+    private void updateListView()
+    {
+        lstParkedCarNodes.getItems().clear();
+        lstRemovedCarNodes.getItems().clear();
+
+        lstParkedCarNodes.getItems().addAll(parkedCars.toArray());
+        lstRemovedCarNodes.getItems().addAll(removedCars.toArray());
 
     }
 
