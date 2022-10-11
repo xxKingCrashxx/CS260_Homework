@@ -47,7 +47,6 @@ public class CarDataNode implements Cloneable
 
         this.checkIn = checkIn;
         this.checkout = checkout;
-
     }
 
     /**
