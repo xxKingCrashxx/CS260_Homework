@@ -1,4 +1,11 @@
 package structure;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * GarageSet class which stores and manipulates a CarDataNode linkedlist structure.
  */
@@ -192,7 +199,6 @@ public class GarageSet
         for (int i = 0; i < contentArray.length; i++, cursor = cursor.getNext()) {
             contentArray[i] = cursor.toString();
         }
-
         return contentArray;
     }
 
@@ -213,18 +219,83 @@ public class GarageSet
     }
 
     /**
+     * private method which loads in nodes directly into the GarageSet.
+     * The data is assumed to have come from the application and no changes were made to the data.
+     * @param savedNode
+     */
+    private void loadSavedNodes(CarDataNode savedNode)
+    {
+        if(this.head == null)
+        {
+            head = savedNode;
+        }
+        else
+        {
+            CarDataNode searchNode = head;
+
+            while(searchNode.getNext() != null)
+            {
+                searchNode = searchNode.getNext();
+            }
+
+            searchNode.addNodeAfter(savedNode);
+        }
+        tail = savedNode;
+        totalItems++;
+    }
+
+    /**
      * Static method that reads in data from a file and fills up the GarageSet Object.
      */
-    public static void loadGSData()
+    public static void loadGSData(GarageSet garageSet)
     {
+        File loadData = new File("src\\resources\\saveData.txt");
 
+        if(!loadData.exists())
+            return;
+
+        try 
+        {
+            Scanner scanner = new Scanner(loadData);
+
+            while(scanner.hasNextLine()){
+                String[] data = scanner.nextLine().split("\t");
+                garageSet.loadSavedNodes(new CarDataNode(data[0], null, null, data[1], null));
+            }
+            scanner.close(); 
+        } 
+        catch (FileNotFoundException e) 
+        {
+            e.printStackTrace();
+        }
     }
     /**
      * Static method that writes the string representation of all the CarDataNodes in the GarageSet in a format which will be used to load in the GarageSet Object later.
      */
-    public static void saveGSData()
+    public static void saveGSData(GarageSet garageSet)
     {
-        
+        File saveData = new File("src\\resources\\saveData.txt");
+        try 
+        {
+            if(!saveData.exists())
+            {
+                saveData.createNewFile();
+            }
+
+            FileWriter fWriter = new FileWriter(saveData);
+            fWriter.write(garageSet.toString());
+            fWriter.close();
+        } 
+        catch (IOException ioe) 
+        {
+            ioe.printStackTrace();
+            System.out.println("An IO exception occured while trying to write/create the file.");
+        }
+        catch(SecurityException se)
+        {
+            se.printStackTrace();
+            System.out.println("A SecurityException occured while trying to access the filepath");
+        }
     }
 
 }

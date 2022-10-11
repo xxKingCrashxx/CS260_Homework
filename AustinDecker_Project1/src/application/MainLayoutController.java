@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
@@ -17,7 +18,7 @@ import javafx.scene.input.MouseEvent;
 import structure.GarageExitBag;
 import structure.GarageSet;
 
-public class MainLayoutController
+public class MainLayoutController implements Initializable
 {
     @FXML
     private TextField txtRemoveCar;
@@ -38,8 +39,12 @@ public class MainLayoutController
 
     public void saveAndExit(ActionEvent e)
     {
-        
+        GarageSet.saveGSData(parkedCars);
+        removedCars.dumpOutputData();
+
+        System.exit(0);  
     }
+    
     public void exitProgram(MouseEvent me)
     {
         System.exit(0);
@@ -124,6 +129,12 @@ public class MainLayoutController
         lstParkedCarNodes.getItems().addAll(parkedCars.toArray());
         lstRemovedCarNodes.getItems().addAll(removedCars.toArray());
 
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) 
+    {
+        GarageSet.loadGSData(parkedCars);
+        lstParkedCarNodes.getItems().addAll(parkedCars.toArray());
     }
 
 }

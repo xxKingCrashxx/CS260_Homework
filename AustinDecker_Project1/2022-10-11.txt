@@ -1,0 +1,3 @@
+Liscence Number: abc-101	Clock In: 2022-10-11T10:45:51.265	Clock Out: 2022-10-11T11:58:33.190
+Liscence Number: abc-103	Clock In: 2022-10-11T10:46:00.998	Clock Out: 2022-10-11T11:58:35.574
+Liscence Number: abc-102	Clock In: 2022-10-11T10:45:54.466	Clock Out: 2022-10-11T11:58:38.153
