@@ -42,7 +42,6 @@ public class GarageExitBag
                 cursor = cursor.getNext();
             }
             cursor.addNodeAfter(newNode);
-
         }
         totalItems++;
     }

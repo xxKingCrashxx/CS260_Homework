@@ -170,7 +170,8 @@ public class GarageSet
     }
 
     /**
-     * Method that searches through the GarageSet and returns true or false whether the GarageSet contains a node with a matching liscenseID.
+     * Method that searches through the GarageSet and returns 
+     * true or false whether the GarageSet contains a node with a matching liscenseID.
      * @param id 
      * @return boolean
      */

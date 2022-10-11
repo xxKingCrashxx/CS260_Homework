@@ -10,11 +10,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import structure.GarageExitBag;
 import structure.GarageSet;
 
@@ -47,7 +49,15 @@ public class MainLayoutController implements Initializable
     
     public void exitProgram(MouseEvent me)
     {
-        System.exit(0);
+        Alert alert = new Alert(AlertType.WARNING, "Are you sure you want to exit the program without saving?", ButtonType.YES, ButtonType.NO);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.showAndWait();
+
+        ButtonType result = alert.getResult();
+        if(result.equals(ButtonType.YES))
+            System.exit(0);
+        else
+            return;
     }
 
     public void addCarByID(MouseEvent mouseEvent)
