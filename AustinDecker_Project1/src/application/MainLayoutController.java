@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -34,7 +35,6 @@ public class MainLayoutController implements Initializable
 
     private GarageSet parkedCars = new GarageSet();
     private GarageExitBag removedCars = new GarageExitBag();
-    private InputBoxLayoutController inputBoxLayoutController; 
 
     public void saveAndExit(ActionEvent e)
     {
@@ -107,7 +107,19 @@ public class MainLayoutController implements Initializable
 
     public void addCarByIndex(ActionEvent ae)
     {
+        TextInputDialog userInput = new TextInputDialog();
+        userInput.setTitle("Add Car");
+        userInput.setContentText("Please put in the Car liscense id.");
+        userInput.setHeaderText("Add new Car");
+        userInput.showAndWait();
+
+        String result = userInput.getEditor().getText();
+
+        if (result.equals("") || result == null)
+            return;
         
+        parkedCars.checkIn(lstParkedCarNodes.getSelectionModel().getSelectedIndex(), result);
+        updateListView();
     }
 
     public void removeCarByIndex(ActionEvent ae)
