@@ -193,11 +193,7 @@ public class CarDataNode implements Cloneable
      */
     public boolean equals(CarDataNode node)
     {
-        if(!this.liscenceNum.equals(node.liscenceNum))
-        {
-            return false;
-        }
-        return true;
+        return this.liscenceNum.equals(node.liscenceNum);
     }
     /**
      * static method that searches through the head of the CarDataNode object until it finds a CarDataNode object with the matching liscenseID.
