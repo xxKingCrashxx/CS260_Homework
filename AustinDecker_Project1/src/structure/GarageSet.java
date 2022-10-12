@@ -73,17 +73,10 @@ public class GarageSet
         }
         else
         {
-            CarDataNode searchNode = head;
-
             if(!hasDuplicate(newNode.getCarID()))
             {
-                while(searchNode.getNext() != null)
-                {
-                    searchNode = searchNode.getNext();
-                }
-
-                searchNode.addNodeAfter(newNode);
-                tail = newNode;
+                tail.addNodeAfter(newNode);
+                tail = tail.getNext();
                 totalItems++;
             }
         }

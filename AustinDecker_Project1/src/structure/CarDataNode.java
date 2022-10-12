@@ -176,7 +176,7 @@ public class CarDataNode implements Cloneable
      */
     public void checkIn()
     {
-        checkIn = LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuu-MM-dd:HH:mm:ss"));
+       checkIn = LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuu-MM-dd:HH:mm:ss"));
     }
 
     /**
