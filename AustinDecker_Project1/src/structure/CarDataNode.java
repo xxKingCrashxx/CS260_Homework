@@ -1,6 +1,7 @@
 package structure;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 /**
  * CarDataNode class which uses the doubly linked list data structure.
  */
@@ -175,7 +176,7 @@ public class CarDataNode implements Cloneable
      */
     public void checkIn()
     {
-       checkIn = LocalDateTime.now().toString();
+        checkIn = LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuu-MM-dd:HH:mm:ss"));
     }
 
     /**
@@ -183,7 +184,7 @@ public class CarDataNode implements Cloneable
      */
     public void checkOut()
     {
-        checkout = LocalDateTime.now().toString();
+        checkout = LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuu-MM-dd:HH:mm:ss"));
     }
 
     /**
