@@ -244,7 +244,7 @@ public class GarageSet
     public static void loadGSData(GarageSet garageSet)
     {
         File loadData = new File("saveData.txt");
-        
+
         if(!loadData.exists())
             return;
         try 
@@ -275,7 +275,7 @@ public class GarageSet
      */
     public static void saveGSData(GarageSet garageSet)
     {
-        File saveData = new File("src\\resources\\saveData.txt");
+        File saveData = new File("saveData.txt");
         try 
         {
             if(!saveData.exists())
