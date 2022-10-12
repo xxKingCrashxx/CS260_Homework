@@ -244,11 +244,11 @@ public class GarageSet
     public static void loadGSData(GarageSet garageSet)
     {
         File loadData = new File("saveData.txt");
+        
+        if(!loadData.exists())
+            return;
         try 
         {
-            if(!loadData.exists())
-                loadData.createNewFile();
-
             Scanner scanner = new Scanner(loadData);
 
             while(scanner.hasNextLine()){
