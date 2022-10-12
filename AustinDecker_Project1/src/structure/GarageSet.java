@@ -243,7 +243,7 @@ public class GarageSet
      */
     public static void loadGSData(GarageSet garageSet)
     {
-        File loadData = new File("src\\resources\\saveData.txt");
+        File loadData = new File("saveData.txt");
 
         if(!loadData.exists())
             return;
