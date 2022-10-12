@@ -244,12 +244,11 @@ public class GarageSet
     public static void loadGSData(GarageSet garageSet)
     {
         File loadData = new File("saveData.txt");
-
-        if(!loadData.exists())
-            return;
-
         try 
         {
+            if(!loadData.exists())
+                loadData.createNewFile();
+
             Scanner scanner = new Scanner(loadData);
 
             while(scanner.hasNextLine()){
@@ -261,6 +260,14 @@ public class GarageSet
         catch (FileNotFoundException e) 
         {
             e.printStackTrace();
+        }
+        catch(IOException ioe){
+            System.out.println("saveData.txt could not be created for some reason.");
+        }
+        catch(SecurityException se)
+        {
+            se.printStackTrace();
+            System.out.println("A SecurityException occured while trying to access the filepath");
         }
     }
     /**
