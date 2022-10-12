@@ -18,6 +18,9 @@ import javafx.stage.Modality;
 import structure.GarageExitBag;
 import structure.GarageSet;
 
+/**
+ * Class that represents the logic portion behind the gui.  
+ */
 public class MainLayoutController implements Initializable
 {
     @FXML
