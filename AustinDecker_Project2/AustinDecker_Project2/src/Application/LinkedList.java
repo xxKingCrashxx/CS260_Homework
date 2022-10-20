@@ -38,4 +38,10 @@ public class LinkedList{
            throw new NoSuchElementException();
         head = head.next;
     }
+    public Node getHead() {
+        return head;
+    }
+    public Node getTail() {
+        return tail;
+    }
 }
