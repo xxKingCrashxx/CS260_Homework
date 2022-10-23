@@ -18,6 +18,7 @@ public class LinkedList{
     }
     Node head;
     Node tail;
+    int totalItems;
 
     public void addToBack( Process value){
         if (head == null){
@@ -25,23 +26,19 @@ public class LinkedList{
             tail = head;
         }
         else{
-            Node cursor = head;
-            while(cursor.next != null)
-                cursor = cursor.next;
-            cursor.next = new Node(value);
+            tail.next = new Node(value);
             tail = tail.next;
         }
+        totalItems++;
 
     }
     public void removeFromFront(){
         if(head == null)
            throw new NoSuchElementException();
         head = head.next;
+        totalItems--;
     }
-    public Node getHead() {
-        return head;
-    }
-    public Node getTail() {
-        return tail;
-    }
+    public Node getHead() {return head;}
+    public Node getTail() {return tail;}
+    public int getTotalItems() {return totalItems;}
 }

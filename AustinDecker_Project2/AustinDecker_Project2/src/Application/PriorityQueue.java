@@ -14,7 +14,7 @@ public class PriorityQueue{
     public void add(Process item, int priority){
 
     }
-    public void poll(){
+    public void remove(){
 
     }
     
