@@ -32,7 +32,7 @@ public class LinkedList{
         totalItems++;
 
     }
-    public void removeFromFront(){
+    public void removeFromFront() throws NoSuchElementException{
         if(head == null)
            throw new NoSuchElementException();
         head = head.next;
