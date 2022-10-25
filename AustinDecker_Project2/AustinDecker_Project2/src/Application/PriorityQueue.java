@@ -3,13 +3,10 @@ package Application;
 import java.util.NoSuchElementException;
 
 public class PriorityQueue{
-    private int manyItems;
     final int MAX_PRIORITY = 14;
     private LinkedList[] data = new LinkedList[MAX_PRIORITY + 1];
 
-    public PriorityQueue(){
-        manyItems = 0;
-        
+    public PriorityQueue(){       
         for (int i = 0; i < data.length; i++) {
             data[i] = new LinkedList();
         }
@@ -19,7 +16,6 @@ public class PriorityQueue{
         if(priorityIndex > MAX_PRIORITY)
             throw new ArrayIndexOutOfBoundsException("Priority level not supported");
         data[priorityIndex].addToBack(item);
-        manyItems++;
     }
     public void remove() throws NoSuchElementException{
         int priorityIndex = 0;
@@ -28,7 +24,6 @@ public class PriorityQueue{
                 priorityIndex++;
             else{
                 data[priorityIndex].removeFromFront();
-                manyItems--;
                 break;
             }
         }

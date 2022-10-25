@@ -28,7 +28,6 @@ public class LinkedList{
             tail = tail.next;
         }
         totalItems++;
-
     }
     public Process removeFromFront() throws NoSuchElementException{
         if(head == null)
@@ -36,10 +35,9 @@ public class LinkedList{
 
         Process removedProcess = null;
         removedProcess = Process.copy(head.getValue(), removedProcess);
-        
+
         head = head.next;
         totalItems--;
-
         return removedProcess;
     }
     public Node getHead() {return head;}
