@@ -4,21 +4,19 @@ import java.util.NoSuchElementException;
 
 public class LinkedList{
     class Node{
-        Process value;
-        Node next;
+        private Process value;
+        private Node next;
 
         public Node(Process value){
             this.value = value;
             next = null;
         }
-
-        public Process getValue() {
-            return value;
-        }
+        public Process getValue() {return value;}
+        public Node getNext(){return next;}
     }
-    Node head;
-    Node tail;
-    int totalItems;
+    private Node head;
+    private Node tail;
+    private int totalItems;
 
     public void addToBack( Process value){
         if (head == null){
@@ -32,11 +30,17 @@ public class LinkedList{
         totalItems++;
 
     }
-    public void removeFromFront() throws NoSuchElementException{
+    public Process removeFromFront() throws NoSuchElementException{
         if(head == null)
            throw new NoSuchElementException();
+
+        Process removedProcess = null;
+        removedProcess = Process.copy(head.getValue(), removedProcess);
+        
         head = head.next;
         totalItems--;
+
+        return removedProcess;
     }
     public Node getHead() {return head;}
     public Node getTail() {return tail;}

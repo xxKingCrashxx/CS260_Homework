@@ -4,8 +4,8 @@ import java.util.NoSuchElementException;
 
 public class PriorityQueue{
     private int manyItems;
-    final int MAX_PRIORITY = 15;
-    private LinkedList[] data = new LinkedList[MAX_PRIORITY];
+    final int MAX_PRIORITY = 14;
+    private LinkedList[] data = new LinkedList[MAX_PRIORITY + 1];
 
     public PriorityQueue(){
         manyItems = 0;
@@ -28,6 +28,7 @@ public class PriorityQueue{
                 priorityIndex++;
             else{
                 data[priorityIndex].removeFromFront();
+                manyItems--;
                 break;
             }
         }
