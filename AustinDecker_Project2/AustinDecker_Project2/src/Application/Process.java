@@ -1,6 +1,6 @@
 package Application;
 
-public class Process{
+public class Process implements Comparable{
     private int startTime;
     private int finishTime;
     private int priority;
@@ -24,6 +24,28 @@ public class Process{
         copy.finishTime = target.finishTime;
 
         return copy;
+    }
+
+    /**
+     * this method does not follow the rule (x.compareTo(y)==0) == (x.equals(y))
+     */
+    @Override
+    public int compareTo(Object o) {
+        Process process;
+        if(o == null)
+            throw new NullPointerException();
+
+        if (!(o instanceof Process))
+            throw new ClassCastException("the object is not a Process object");
+
+        process = (Process)o;
+        if(this.startTime == process.startTime)
+            return 0;
+        else if(this.startTime > process.startTime)
+            return 1;
+        else
+            return -1;
+        
     }
  
 }

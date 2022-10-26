@@ -16,6 +16,7 @@ public class PriorityQueue{
         if(priorityIndex > MAX_PRIORITY)
             throw new ArrayIndexOutOfBoundsException("Priority level not supported");
         data[priorityIndex].addToBack(item);
+        System.out.printf("%s inserts into queue", item.getProcessID());
     }
     public void remove() throws NoSuchElementException{
         int priorityIndex = 0;
@@ -31,6 +32,17 @@ public class PriorityQueue{
         if(priorityIndex == MAX_PRIORITY)
             throw new NoSuchElementException("Queue underflow");
 
+    }
+    public Process getNextProcess(){
+        int priorityIndex = 0;
+        while(priorityIndex < data.length){
+            if(data[priorityIndex] == null)
+                priorityIndex++;
+            else{
+                return data[priorityIndex].getHead().getValue();
+            }
+        }
+        return null;
     }
     
     
