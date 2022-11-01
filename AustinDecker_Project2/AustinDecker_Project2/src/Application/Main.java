@@ -10,18 +10,7 @@ public class Main {
     public static void main(String[] args) {
         PriorityQueue priorityQueue = new PriorityQueue();
         Process[] sortedProcesses = sortProcesses(FILE_PATH);
-        int processAmount = 0;
-
-        try {
-            Scanner reader = new Scanner(new File(FILE_PATH));
-            processAmount = reader.nextInt();
-            reader.close();
-        } 
-        catch (FileNotFoundException e) {
-            System.out.println("File was not found");
-            e.printStackTrace();    
-        }
-        Processor processor = new Processor(processAmount);
+        Processor processor = new Processor();
 
         int index = 0;
         int time = 0;

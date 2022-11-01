@@ -10,6 +10,7 @@ public class Process implements Comparable<Object>{
         this.priority = priority;
         this.startTime = startTime;
         this.finishTime = finishTime;
+        this.processID = processID;
     }
 
     public Process(){

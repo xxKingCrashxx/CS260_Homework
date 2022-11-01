@@ -4,7 +4,7 @@ public class Processor {
     private LinkedList processes;
     private int manyItems;
 
-    public Processor(int processAmount)
+    public Processor()
     {
         processes = new LinkedList();
         manyItems = 0;
