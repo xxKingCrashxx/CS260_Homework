@@ -29,9 +29,6 @@ public class PriorityQueue{
             }
         }
 
-        if(priorityIndex == MAX_PRIORITY)
-            throw new NoSuchElementException("Queue underflow");
-
     }
     public Process getNextProcess(){
         int priorityIndex = 0;

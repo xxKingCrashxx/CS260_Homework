@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    static final String FILE_PATH = "AustinDecker_Project2\\src\\Application\\test.txt";
+    static final String FILE_PATH = "src\\Application\\test.txt";
     public static void main(String[] args) {
         PriorityQueue priorityQueue = new PriorityQueue();
         Process[] sortedProcesses = sortProcesses(FILE_PATH);
@@ -14,13 +14,11 @@ public class Main {
 
         int index = 0;
         int time = 0;
-        while(index < sortedProcesses.length){
+        while(index < sortedProcesses.length || priorityQueue.getNextProcess() != null){
             
-            if(sortedProcesses[index].getStartTime() == time){
+            if(index < sortedProcesses.length && sortedProcesses[index].getStartTime() == time){
                 System.out.printf("T=%d\n", time);
-                while(sortedProcesses[index].getStartTime() == time){
-                    if(index >= sortedProcesses.length)
-                        break; 
+                while(index < sortedProcesses.length && sortedProcesses[index].getStartTime() == time){
                     priorityQueue.add(sortedProcesses[index]);
                     index++;
                 }

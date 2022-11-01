@@ -56,8 +56,6 @@ public class Process implements Comparable<Object>{
         else if(this.startTime > process.startTime)
             return 1;
         else
-            return -1;
-        
+            return -1;  
     }
- 
 }
