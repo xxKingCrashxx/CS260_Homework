@@ -1,6 +1,6 @@
 package Application;
 
-public class Process implements Comparable{
+public class Process implements Comparable<Object>{
     private int startTime;
     private int finishTime;
     private int priority;
@@ -12,17 +12,28 @@ public class Process implements Comparable{
         this.finishTime = finishTime;
     }
 
+    public Process(){
+        startTime = 0;
+        finishTime = 0;
+        priority = 0;
+        processID = null;
+    }
+
     public String getProcessID() {return processID;}
     public int getPriority() {return priority;}
     public int getStartTime() {return startTime;}
     public int getFinishTime() {return finishTime;}
+
+    public void setFinishTime(int addedTime){this.finishTime = this.finishTime + addedTime;}
     
     public static Process copy(Process target, Process copy){
+
+        if(copy == null)
+            copy = new Process();
         copy.priority = target.priority;
         copy.processID = target.processID;
         copy.startTime = target.startTime;
         copy.finishTime = target.finishTime;
-
         return copy;
     }
 
