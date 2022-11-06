@@ -57,7 +57,6 @@ public class Main {
             int index = 0;
             while(reader.hasNextLine()){
                 String[] data = reader.nextLine().split(" ");
-                System.out.println(data[0]);
                 sortedProcesses[index] = new Process(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]));
                 index++;
             }
