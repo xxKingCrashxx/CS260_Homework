@@ -42,12 +42,12 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return null;
     }
 
-    public static Node binarySearch(Node root){
+    public static Node<?> binarySearch(Node<?> root){
         //TODO
         return null;
     }
 
-    public static String inOrderTraversal(Node root){
+    public static String inOrderTraversal(Node<?> root){
         //TODO
         return null;
     }
