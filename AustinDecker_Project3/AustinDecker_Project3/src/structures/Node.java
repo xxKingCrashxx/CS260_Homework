@@ -6,7 +6,7 @@ public class Node<T extends Comparable<T>> implements Serializable{
     Node<T> leftNode;
     Node<T> rightNode;
     T data;
-    int height;
+    int height = 0;
 
     public Node(T data, Node<T> leftNode, Node<T> rightNode){
         //TODO
