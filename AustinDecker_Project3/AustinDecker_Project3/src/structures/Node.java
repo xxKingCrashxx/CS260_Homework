@@ -10,6 +10,9 @@ public class Node<T extends Comparable<T>> implements Serializable{
 
     public Node(T data, Node<T> leftNode, Node<T> rightNode){
         //TODO
+        this.data = data;
+        this.leftNode = leftNode;
+        this.rightNode = rightNode;
     }
 
     public int calculateBalanceFactor(){
