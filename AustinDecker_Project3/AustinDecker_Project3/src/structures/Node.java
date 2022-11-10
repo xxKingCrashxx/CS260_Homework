@@ -33,7 +33,28 @@ public class Node<T extends Comparable<T>> implements Serializable{
     }
 
     public int getHeight() {
-        return height;
+        int leftNodeHeight = 0;
+        int rightNodeHeight = 0;
+
+        if(this.isLeaf()){
+            return 0;
+        }
+        else{
+            if(this.leftNode != null){
+                leftNodeHeight = 1 + this.leftNode.getHeight();
+            }
+
+            if(this.rightNode != null){
+                rightNodeHeight = 1 + this.rightNode.getHeight();
+            }
+
+            if(leftNodeHeight >= rightNodeHeight)
+                return leftNodeHeight;
+            else{
+                return rightNodeHeight;
+            }
+        }
+        
     }
 
     public void setData(T data) {
@@ -50,6 +71,10 @@ public class Node<T extends Comparable<T>> implements Serializable{
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public boolean isLeaf(){
+        return (leftNode == null && rightNode == null);
     }
 
 }
