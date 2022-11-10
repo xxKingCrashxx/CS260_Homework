@@ -26,8 +26,12 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
     
     @Override
     public int compareTo(VideoGame o) {
-        // TODO Auto-generated method stub
-        return 0;
+        if(this.price == o.price)
+            return 0;
+        else if(this.price > o.price)
+            return 1;
+        else
+            return -1;
     }
     
 }
