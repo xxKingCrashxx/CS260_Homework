@@ -47,12 +47,7 @@ public class Node<T extends Comparable<T>> implements Serializable{
             if(this.rightNode != null){
                 rightNodeHeight = 1 + this.rightNode.getHeight();
             }
-
-            if(leftNodeHeight >= rightNodeHeight)
-                return leftNodeHeight;
-            else{
-                return rightNodeHeight;
-            }
+            return Math.max(leftNodeHeight, rightNodeHeight);
         }
         
     }
