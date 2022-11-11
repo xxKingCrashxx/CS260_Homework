@@ -42,6 +42,11 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return null;
     }
 
+    private void updateHeight(Node<T> node){
+        //TODO
+        node.calculateNewHeight();
+    }
+
     public static Node<?> binarySearch(Node<?> root){
         //TODO
         return null;
