@@ -5,7 +5,8 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
     private String name;
 
     public VideoGame(String name, int price){
-        //TODO
+        this.name = name;
+        this.price = price;
     }
 
     public int getPrice() {return price;}
@@ -15,7 +16,7 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
     public void setPrice(int price) {this.price = price;}
 
     public void setName(String name) {this.name = name;}
-    
+
     @Override
     public int compareTo(VideoGame o) {
         if(this.price == o.price)

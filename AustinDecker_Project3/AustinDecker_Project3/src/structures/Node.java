@@ -33,7 +33,6 @@ public class Node<T extends Comparable<T>> implements Serializable{
     public boolean isLeaf(){return (leftNode == null && rightNode == null);}
 
     /*public int calculateNewHeight() {
-        //TODO
         int leftNodeHeight = 0;
         int rightNodeHeight = 0;
 
