@@ -17,10 +17,12 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         this.root = root;
     }
 
+    //insert node
     public void addNode(Node<T> data){
         //TODO
     }
 
+    //delete node
     public Node<T> removeNodeWithData(T data){
         //TODO
         return null;
@@ -56,11 +58,23 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         int balanceFactor = height(node.getLeftNode()) - height(node.getRightNode());
         return balanceFactor;
     }
+
     private int height(Node<T> node){
         if(node == null)
             return -1;
         else
             return node.getHeight();
     }
+
+    private Node<T> leftRotation(Node<T> root){
+        //TODO
+        return null;
+    }
+
+    private Node<T> rightRotation(Node<T> root){
+        //TODO
+        return null;
+    }
+
 
 }
