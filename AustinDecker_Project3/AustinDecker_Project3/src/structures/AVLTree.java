@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class AVLTree<T extends Comparable<T>> implements Serializable{
     Node<T> root;
 
-    public AVLTree(Node<T> root){
-        //TODO
+    public AVLTree(){
+        root = null;
     }
 
     public Node<T> getRoot() {
@@ -19,7 +19,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
 
     //insert node
     public void addNode(Node<T> data){
-        //TODO
+       root = insert(root, data);
     }
 
     //delete node
@@ -66,14 +66,49 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
             return node.getHeight();
     }
 
+    private void updateHeight(Node<T> node){
+        node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
+    }
+
     private Node<T> leftRotation(Node<T> root){
-        //TODO
-        return null;
+        Node<T> newRoot = root.getRightNode();
+        root.setRightNode(newRoot.getLeftNode());
+        newRoot.setLeftNode(root);
+
+        //update height
+        updateHeight(root);
+        updateHeight(newRoot);
+        return newRoot;
     }
 
     private Node<T> rightRotation(Node<T> root){
+        Node<T> newRoot = root.getLeftNode();
+        root.setLeftNode(newRoot.getRightNode());
+        newRoot.setRightNode(root);
+
+        //update height
+        updateHeight(root);
+        updateHeight(newRoot);
+        return newRoot;
+    }
+
+    private Node<T> insert(Node<T> root, Node<T> data){
         //TODO
-        return null;
+        if(root == null){
+            return data;
+        }
+        else if(data.getData().compareTo(root.getData()) < 0){
+            root.setLeftNode(insert(root.getLeftNode(), data));
+            if(calculateBalanceFactor(root) == 2){
+
+            }
+        }
+        else if(data.getData().compareTo(root.getData()) > 0){
+            root.setRightNode(insert(root.getRightNode(), data));
+        }
+        else;
+        updateHeight(root);
+        return root;
     }
 
 
