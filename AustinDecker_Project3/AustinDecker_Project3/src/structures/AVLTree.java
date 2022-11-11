@@ -42,11 +42,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return null;
     }
 
-    private void updateHeight(Node<T> node){
-        //TODO
-        node.calculateNewHeight();
-    }
-
     public static Node<?> binarySearch(Node<?> root){
         //TODO
         return null;
@@ -55,6 +50,17 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
     public static String inOrderTraversal(Node<?> root){
         //TODO
         return null;
+    }
+
+    private int calculateBalanceFactor(Node<T> node){
+        int balanceFactor = height(node.getLeftNode()) - height(node.getRightNode());
+        return balanceFactor;
+    }
+    private int height(Node<T> node){
+        if(node == null)
+            return -1;
+        else
+            return node.getHeight();
     }
 
 }
