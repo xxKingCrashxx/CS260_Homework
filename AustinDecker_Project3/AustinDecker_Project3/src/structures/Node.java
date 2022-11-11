@@ -3,10 +3,10 @@ package structures;
 import java.io.Serializable;
 
 public class Node<T extends Comparable<T>> implements Serializable{
-    Node<T> leftNode;
-    Node<T> rightNode;
-    T data;
-    int height = 0;
+    private Node<T> leftNode;
+    private Node<T> rightNode;
+    private T data;
+    private int height = 0;
 
     public Node(T data, Node<T> leftNode, Node<T> rightNode){
         this.data = data;
@@ -14,48 +14,25 @@ public class Node<T extends Comparable<T>> implements Serializable{
         this.rightNode = rightNode;
     }
 
-    public int calculateBalanceFactor(){
-        //TODO
-        return 0;
-    }
+    public T getData() {return data;}
 
-    public T getData() {
-        return data;
-    }
+    public Node<T> getLeftNode() {return leftNode;}
 
-    public Node<T> getLeftNode() {
-        return leftNode;
-    }
+    public Node<T> getRightNode() {return rightNode;}
 
-    public Node<T> getRightNode() {
-        return rightNode;
-    }
+    public int getHeight() {return this.height;}
 
-    public int getHeight() {
-        return this.height;
-    }
+    public void setData(T data) {this.data = data;}
 
-    public void setData(T data) {
-        this.data = data;
-    }
+    public void setLeftNode(Node<T> leftNode) {this.leftNode = leftNode;}
 
-    public void setLeftNode(Node<T> leftNode) {
-        this.leftNode = leftNode;
-    }
+    public void setRightNode(Node<T> rightNode) {this.rightNode = rightNode;}
 
-    public void setRightNode(Node<T> rightNode) {
-        this.rightNode = rightNode;
-    }
+    public void setHeight(int height) {this.height = height;}
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
+    public boolean isLeaf(){return (leftNode == null && rightNode == null);}
 
-    public boolean isLeaf(){
-        return (leftNode == null && rightNode == null);
-    }
-
-    public int calculateNewHeight() {
+    /*public int calculateNewHeight() {
         //TODO
         int leftNodeHeight = 0;
         int rightNodeHeight = 0;
@@ -76,5 +53,6 @@ public class Node<T extends Comparable<T>> implements Serializable{
             return updatedHeight;
         }
     }
+    */
 
 }
