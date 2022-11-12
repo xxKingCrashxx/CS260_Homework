@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Objects;
 
 public class VideoGame implements Serializable, Comparable<VideoGame>{
     private int price;
@@ -25,6 +26,19 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
             return 1;
         else
             return -1;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o)
+            return true;
+        if(o == null)
+            return false;
+        if(!(o instanceof VideoGame))
+            return false;
+        
+        VideoGame videoGame = (VideoGame)o;
+        return Objects.equals(this.name, videoGame.name) && this.price == videoGame.price;
     }
     
 }
