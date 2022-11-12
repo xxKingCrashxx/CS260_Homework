@@ -24,14 +24,19 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
 
     //delete node
     public Node<T> removeNodeWithData(T data){
-        //TODO
+        Node<T> delNode = findNodeWithData(data);
+
+        if(delNode == null)
+            System.out.println("the data to be deleted does not exist.");
+        else{
+            root = delete(root, delNode);
+            return root;
+        }
         return null;
-        
     }
 
     public Node<T> findNodeWithData(T data){
-        //TODO
-        return null;
+        return searchTree(root, data);
     }
 
     public void printTreeDiagram(){
@@ -92,24 +97,92 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return newRoot;
     }
 
+    private Node<T> determineRotation(Node<T> node){
+        //left-left
+        if(calculateBalanceFactor(node) > 1){
+            //left-right
+            if(calculateBalanceFactor(node.getLeftNode()) < 0)
+                node.setLeftNode(leftRotation(node.getLeftNode()));
+            return rightRotation(node);
+        }
+        //right-right
+        else if(calculateBalanceFactor(node) < -1){
+            //right-left
+            if(calculateBalanceFactor(node.getRightNode()) > 0)
+                node.setRightNode(rightRotation(node.getRightNode()));
+            return leftRotation(node);
+        }
+        else
+            return node;
+    }
+
     private Node<T> insert(Node<T> root, Node<T> data){
-        //TODO
         if(root == null){
             return data;
         }
         else if(data.getData().compareTo(root.getData()) < 0){
             root.setLeftNode(insert(root.getLeftNode(), data));
-            if(calculateBalanceFactor(root) == 2){
-
-            }
         }
         else if(data.getData().compareTo(root.getData()) > 0){
             root.setRightNode(insert(root.getRightNode(), data));
         }
-        else;
         updateHeight(root);
-        return root;
+        return determineRotation(root);
     }
 
+    private Node<T> delete(Node<T> root, Node<T> targetNode){
+        //TODO
+        if(root == null)
+            return null;
 
+        if(root.getData().compareTo(targetNode.getData()) > 0){
+            root.setLeftNode(delete(root.getLeftNode(), targetNode));
+        }
+        else if(root.getData().compareTo(targetNode.getData()) < 0){
+            root.setRightNode(delete(root.getRightNode(), targetNode));
+        }
+        else{
+            if(root.getLeftNode() == null)
+                return root.getRightNode();
+            else if(root.getRightNode() == null)
+                return root.getLeftNode();
+            //LOOK HERE -------- THIS IS WRONG AND INCOMPLETE, COME BACK TO FIX LATER
+            root.setData(getMax(root.getLeftNode()));
+            root.setLeftNode(delete(root.getLeftNode(), root));
+        }
+        updateHeight(root);
+        determineRotation(root);
+        return null;
+    }
+
+    private T getMax(Node<T> root) {
+        while(root.getRightNode() != null){
+            root = root.getRightNode();
+        }
+        return root.getData();
+    }
+
+    private T getMin(Node<T> root){
+        while(root.getLeftNode() != null){
+            root = root.getLeftNode();
+        }
+        return root.getData();
+    }
+
+    private Node<T> searchTree(Node<T> root, T target){
+
+        if(root == null){
+            return null;
+        }
+        else if(root.getData().equals(target)){
+            return root;
+        }
+        else {
+            if(root.getData().compareTo(target) > 0 && root.getLeftNode() != null)
+                root = searchTree(root.getLeftNode(), target);
+            else if(root.getData().compareTo(target) < 0 && root.getRightNode() != null)
+                root = searchTree(root.getRightNode(), target);
+            return root;
+        }
+    }
 }
