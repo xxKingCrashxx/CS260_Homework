@@ -147,7 +147,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
             else if(root.getRightNode() == null)
                 return root.getLeftNode();
             //LOOK HERE -------- THIS IS WRONG AND INCOMPLETE, COME BACK TO FIX LATER
-            root.setData(getMax(root.getLeftNode()));
+            root = getMax(root.getLeftNode());
             root.setLeftNode(delete(root.getLeftNode(), root));
         }
         updateHeight(root);
@@ -155,18 +155,18 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return null;
     }
 
-    private T getMax(Node<T> root) {
+    private Node<T> getMax(Node<T> root) {
         while(root.getRightNode() != null){
             root = root.getRightNode();
         }
-        return root.getData();
+        return root;
     }
 
-    private T getMin(Node<T> root){
+    private Node<T> getMin(Node<T> root){
         while(root.getLeftNode() != null){
             root = root.getLeftNode();
         }
-        return root.getData();
+        return root;
     }
 
     private Node<T> searchTree(Node<T> root, T target){
