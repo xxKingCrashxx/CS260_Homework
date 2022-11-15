@@ -7,7 +7,7 @@ public class App{
         
         boolean running = true;
         do {
-            System.out.printf("----------------------------------------------------------------------------%n");
+            System.out.printf("----------------------------------------------------------------------------%n%n%n");
             System.out.printf("Options:%n");
             System.out.printf("\t0:Exit application%n");
             System.out.printf("\t1:Add new video game to database%n");
@@ -15,7 +15,7 @@ public class App{
             System.out.printf("\t3:Search database for video game%n");
             System.out.printf("\t4:Save database to file%n");
             System.out.printf("\t5:Load previously saved database from file%n");
-            System.out.printf("----------------------------------------------------------------------------%n");
+            System.out.printf("%n%n%n----------------------------------------------------------------------------%n");
             
             switch (scanner.nextLine()) {
                 case "0":
@@ -46,6 +46,7 @@ public class App{
         scanner.close();
     }
     private static void addNewGame(){
+
         String exitString = "";
         do{
             int videoGamePrice = 0;
