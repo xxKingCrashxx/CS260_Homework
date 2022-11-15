@@ -45,16 +45,15 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
 
     @Override
     public String toString(){
+        return toStringPreOrderHelper(root, "");
+    }
+
+    private Node<T> binarySearch(Node<T> root){
         //TODO
         return null;
     }
 
-    public static Node<?> binarySearch(Node<?> root){
-        //TODO
-        return null;
-    }
-
-    public static String inOrderTraversal(Node<?> root){
+    private String inOrderTraversal(Node<T> root){
         //TODO
         return null;
     }
@@ -120,7 +119,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         if(root == null){
             return data;
         }
-        else if(data.getData().compareTo(root.getData()) < 0){
+        else if(data.getData().compareTo(root.getData()) <= 0){
             root.setLeftNode(insert(root.getLeftNode(), data));
         }
         else if(data.getData().compareTo(root.getData()) > 0){
@@ -156,33 +155,47 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
     }
 
     private Node<T> getMax(Node<T> root) {
-        while(root.getRightNode() != null){
-            root = root.getRightNode();
+        Node<T> cursor = root;
+        while(cursor.getRightNode() != null){
+            cursor = cursor.getRightNode();
         }
-        return root;
+        return cursor;
     }
 
     private Node<T> getMin(Node<T> root){
-        while(root.getLeftNode() != null){
-            root = root.getLeftNode();
+        Node<T> cursor = root;
+        while(cursor.getLeftNode() != null){
+            cursor = cursor.getLeftNode();
         }
-        return root;
+        return cursor;
     }
 
     private Node<T> searchTree(Node<T> root, T target){
-
         if(root == null){
             return null;
         }
-        else if(root.getData().equals(target)){
+
+        if(root.getData().equals(target)){
             return root;
         }
-        else {
-            if(root.getData().compareTo(target) > 0 && root.getLeftNode() != null)
-                root = searchTree(root.getLeftNode(), target);
-            else if(root.getData().compareTo(target) < 0 && root.getRightNode() != null)
-                root = searchTree(root.getRightNode(), target);
-            return root;
+        else if(root.getData().compareTo(target) > 0){
+            return searchTree(root.getLeftNode(), target);
         }
+        else{
+            return searchTree(root.getRightNode(), target);
+        } 
     }
+    private String toStringPreOrderHelper(Node<T> root, String contents){
+        String avlString = contents;
+
+        avlString = avlString + " " + root.getData().toString();
+        if(root.getLeftNode() != null)
+            avlString = toStringPreOrderHelper(root.getLeftNode(), contents);
+        if(root.getRightNode() != null)
+            avlString = toStringPreOrderHelper(root.getRightNode(), contents);
+        return avlString;
+    }
+    
+
+    
 }
