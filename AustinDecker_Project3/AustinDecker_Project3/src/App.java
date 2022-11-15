@@ -46,13 +46,11 @@ public class App{
         scanner.close();
     }
     private static void addNewGame(){
-        int videoGamePrice = 0;
-        String videoGameName = "";
         String exitString = "";
-        boolean validPrice = false, validName = false;
-
-        //TODO
         do{
+            int videoGamePrice = 0;
+            String videoGameName = "";
+            boolean validPrice = false, validName = false;
             while(!(validPrice && validName)){
                 System.out.println("What is the name of the video game that is to be added?");
                 videoGameName = scanner.nextLine();
@@ -87,7 +85,50 @@ public class App{
     }
 
     private static void removeGame(){
+        
+        
         //TODO
+        do{
+            String videoGameTitle = "";
+            int videoGamePrice = 0;
+            boolean validPrice = false, validName = false;
+
+            while(!(validPrice && validName)){
+                System.out.println("What is the name of the video game?");
+                videoGameTitle = scanner.nextLine();
+    
+                System.out.println("What is the price of the video game?");
+                try {
+                    videoGamePrice = Integer.parseInt(scanner.nextLine());
+                    if(videoGamePrice > 0)
+                        validPrice = true;
+                    else
+                        System.out.println("please put in a value greater than 0.");    
+                } 
+                catch (NumberFormatException nfe) {
+                    System.out.println("The video game price was invalid.");
+                }
+    
+                if(!videoGameTitle.equals(""))
+                    validName = true;
+                else{
+                    System.out.println("Please put in something other than an empty string.");
+                }
+            }
+            VideoGame gameToRemove = gameDataBase.findEntry(new VideoGame(videoGameTitle, videoGamePrice));
+
+            if(gameToRemove == null)
+                System.out.println("The game does not exist in the database.");
+            else
+                gameDataBase.removeEntry(gameToRemove);
+
+            System.out.println("Would you like to remove another game from the database? (Y/N)");
+            char ans = scanner.nextLine().toUpperCase().charAt(0);
+            if(ans != 'Y')
+                break;
+
+        }while(true);
+        
     }
 
     private static void searchDataBase(){
