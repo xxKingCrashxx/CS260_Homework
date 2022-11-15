@@ -44,5 +44,10 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
     public int hashCode(){
         return Objects.hash(price, name);
     }
+
+    @Override
+    public String toString(){
+        return this.name + ":" + this.price; 
+    }
     
 }
