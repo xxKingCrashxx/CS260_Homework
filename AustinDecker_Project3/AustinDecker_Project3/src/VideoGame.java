@@ -40,5 +40,9 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
         VideoGame videoGame = (VideoGame)o;
         return Objects.equals(this.name, videoGame.name) && this.price == videoGame.price;
     }
+    @Override
+    public int hashCode(){
+        return Objects.hash(price, name);
+    }
     
 }
