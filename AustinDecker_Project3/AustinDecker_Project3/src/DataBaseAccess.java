@@ -1,10 +1,12 @@
 import structures.AVLTree;
+import structures.Node;
 
 public class DataBaseAccess {
     AVLTree<VideoGame> database;
 
     public void addEntry(VideoGame game){
         //TODO
+        database.addNode(new Node<VideoGame>(game, null, null));
     }
 
     public void removeEntry(VideoGame game){
@@ -13,7 +15,15 @@ public class DataBaseAccess {
 
     public VideoGame findEntry(VideoGame game){
         //TODO
-        return null;
+        Node<VideoGame> foundNode = database.findNodeWithData(game);
+
+        if(foundNode == null){
+            return null;
+        }
+        else{
+            return foundNode.getData();
+        }
+
     }
 
     public static void loadDataBaseFromFile(){
