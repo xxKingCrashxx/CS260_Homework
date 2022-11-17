@@ -119,7 +119,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         if(root == null){
             return data;
         }
-        else if(data.getData().compareTo(root.getData()) <= 0){
+        else if(data.getData().compareTo(root.getData()) < 0){
             root.setLeftNode(insert(root.getLeftNode(), data));
         }
         else if(data.getData().compareTo(root.getData()) > 0){
@@ -190,9 +190,9 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
 
         avlString = avlString + " " + root.getData().toString();
         if(root.getLeftNode() != null)
-            avlString = toStringPreOrderHelper(root.getLeftNode(), contents);
+            avlString = toStringPreOrderHelper(root.getLeftNode(), avlString);
         if(root.getRightNode() != null)
-            avlString = toStringPreOrderHelper(root.getRightNode(), contents);
+            avlString = toStringPreOrderHelper(root.getRightNode(), avlString);
         return avlString;
     }
     
