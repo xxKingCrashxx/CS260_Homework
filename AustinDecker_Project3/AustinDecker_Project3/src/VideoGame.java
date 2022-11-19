@@ -20,9 +20,12 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
 
     @Override
     public int compareTo(VideoGame o) {
-        if(this.price == o.price)
+        int videoGameIntValue = this.hashCode();
+        int comparedVideoGameObjectIntValue = o.hashCode();
+
+        if(videoGameIntValue == comparedVideoGameObjectIntValue)
             return 0;
-        else if(this.price > o.price)
+        else if(videoGameIntValue > comparedVideoGameObjectIntValue)
             return 1;
         else
             return -1;
