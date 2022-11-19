@@ -70,8 +70,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
     }
 
     private int calculateBalanceFactor(Node<T> node){
-        int balanceFactor = height(node.getLeftNode()) - height(node.getRightNode());
-        return balanceFactor;
+        return height(node.getLeftNode()) - height(node.getRightNode());
     }
 
     private int height(Node<T> node){
