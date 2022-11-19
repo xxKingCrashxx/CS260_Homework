@@ -36,7 +36,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
     }
 
     public Node<T> findNodeWithData(T data){
-        return searchTree(root, data);
+        return binarySearch(root, data);
     }
 
     public void printTreeDiagram(){
@@ -48,9 +48,20 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return toStringPreOrderHelper(root, "");
     }
 
-    private Node<T> binarySearch(Node<T> root){
-        //TODO
-        return null;
+    private Node<T> binarySearch(Node<T> root, T target){
+        if(root == null){
+            return null;
+        }
+
+        if(root.getData().equals(target)){
+            return root;
+        }
+        else if(root.getData().compareTo(target) > 0){
+            return binarySearch(root.getLeftNode(), target);
+        }
+        else{
+            return binarySearch(root.getRightNode(), target);
+        } 
     }
 
     private String inOrderTraversal(Node<T> root){
@@ -170,21 +181,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return cursor;
     }
 
-    private Node<T> searchTree(Node<T> root, T target){
-        if(root == null){
-            return null;
-        }
-
-        if(root.getData().equals(target)){
-            return root;
-        }
-        else if(root.getData().compareTo(target) > 0){
-            return searchTree(root.getLeftNode(), target);
-        }
-        else{
-            return searchTree(root.getRightNode(), target);
-        } 
-    }
     private String toStringPreOrderHelper(Node<T> root, String contents){
         String avlString = contents;
 
@@ -195,7 +191,4 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
             avlString = toStringPreOrderHelper(root.getRightNode(), avlString);
         return avlString;
     }
-    
-
-    
 }
