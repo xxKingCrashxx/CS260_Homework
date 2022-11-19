@@ -41,6 +41,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
 
     public void printTreeDiagram(){
         //TODO
+        System.out.println(inOrderTraversal(root, new StringBuilder("")));
     }
 
     @Override
@@ -64,9 +65,13 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         } 
     }
 
-    private String inOrderTraversal(Node<T> root){
-        //TODO
-        return null;
+    private String inOrderTraversal(Node<T> root, StringBuilder string){
+        if(root != null){
+            inOrderTraversal(root.getLeftNode(), string);
+            string.append(root.getData().toString() + " ");
+            inOrderTraversal(root.getRightNode(), string);
+        }
+        return string.toString();
     }
 
     private int calculateBalanceFactor(Node<T> node){
@@ -151,6 +156,23 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
             root.setRightNode(delete(root.getRightNode(), targetNode));
         }
         else{
+            if(root.getLeftNode() == null || root.getRightNode() == null){
+                Node<T> tempNode = null;
+
+                if(root.getLeftNode() == tempNode){
+                    tempNode = root.getRightNode();
+                }
+                else{
+                    tempNode = root.getLeftNode();
+                }
+
+                if(tempNode == null){
+                    root = null;
+                }
+                else{
+                    root = tempNode;
+                }
+            }
         
         }
         return null;

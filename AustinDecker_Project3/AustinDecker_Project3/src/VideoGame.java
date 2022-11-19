@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.Objects;
 
-public class VideoGame implements Serializable, Comparable<VideoGame>{
+public class VideoGame implements Serializable, Comparable<VideoGame>, Cloneable{
     private int price;
     private String name;
 
@@ -46,6 +46,18 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
     @Override
     public int hashCode(){
         return Objects.hash(price, name);
+    }
+
+    @Override
+    public VideoGame clone() throws CloneNotSupportedException{
+        VideoGame clonedGame = null;
+        try {
+            clonedGame = (VideoGame)super.clone();
+        } catch (CloneNotSupportedException e) {
+            // TODO Auto-generated catch block
+            throw new CloneNotSupportedException("Object does not support cloning");
+        }
+        return clonedGame;
     }
 
     @Override

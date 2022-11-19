@@ -14,6 +14,7 @@ public class TestMain {
         myGameDataBase.addEntry(new VideoGame("Elden ring", 69));
 
         System.out.println(myGameDataBase.database.toString());
+        myGameDataBase.database.printTreeDiagram();
         
     }
     
