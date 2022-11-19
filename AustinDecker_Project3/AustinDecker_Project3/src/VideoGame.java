@@ -23,9 +23,9 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
         int videoGameIntValue = this.hashCode();
         int comparedVideoGameObjectIntValue = o.hashCode();
 
-        if(videoGameIntValue == comparedVideoGameObjectIntValue)
+        if(this.price == o.price)
             return 0;
-        else if(videoGameIntValue > comparedVideoGameObjectIntValue)
+        else if(this.price > o.price)
             return 1;
         else
             return -1;
@@ -50,7 +50,7 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
 
     @Override
     public String toString(){
-        return this.name + ":" + this.price; 
+        return this.name + ":" + this.price + ":" + this.hashCode(); 
     }
     
 }

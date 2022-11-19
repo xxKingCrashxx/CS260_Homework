@@ -45,7 +45,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
 
     @Override
     public String toString(){
-        return toStringPreOrderHelper(root, "");
+        return toStringPreOrderHelper(root, new StringBuilder(""));
     }
 
     private Node<T> binarySearch(Node<T> root, T target){
@@ -151,16 +151,8 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
             root.setRightNode(delete(root.getRightNode(), targetNode));
         }
         else{
-            if(root.getLeftNode() == null)
-                return root.getRightNode();
-            else if(root.getRightNode() == null)
-                return root.getLeftNode();
-            //LOOK HERE -------- THIS IS WRONG AND INCOMPLETE, COME BACK TO FIX LATER
-            root = getMax(root.getLeftNode());
-            root.setLeftNode(delete(root.getLeftNode(), root));
+        
         }
-        updateHeight(root);
-        determineRotation(root);
         return null;
     }
 
@@ -180,14 +172,13 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return cursor;
     }
 
-    private String toStringPreOrderHelper(Node<T> root, String contents){
-        String avlString = contents;
-
-        avlString = avlString + " " + root.getData().toString();
-        if(root.getLeftNode() != null)
-            avlString = toStringPreOrderHelper(root.getLeftNode(), avlString);
-        if(root.getRightNode() != null)
-            avlString = toStringPreOrderHelper(root.getRightNode(), avlString);
-        return avlString;
+    private String toStringPreOrderHelper(Node<T> currentNode, StringBuilder string){
+        string.append(currentNode.getData().toString() + " ");
+        if(currentNode.getLeftNode() != null)
+            toStringPreOrderHelper(currentNode.getLeftNode(), string);
+        if(currentNode.getRightNode() != null)
+            toStringPreOrderHelper(currentNode.getRightNode(), string);
+        return string.toString();
+        
     }
 }
