@@ -23,9 +23,9 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
         int videoGameIntValue = this.hashCode();
         int comparedVideoGameObjectIntValue = o.hashCode();
 
-        if(this.price == o.price)
+        if(videoGameIntValue == comparedVideoGameObjectIntValue)
             return 0;
-        else if(this.price > o.price)
+        else if(videoGameIntValue > comparedVideoGameObjectIntValue)
             return 1;
         else
             return -1;
