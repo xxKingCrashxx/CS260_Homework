@@ -113,13 +113,8 @@ public class App{
                     System.out.println("Please put in something other than an empty string.");
                 }
             }
-            VideoGame gameToRemove = gameDataBase.findEntry(new VideoGame(videoGameTitle, videoGamePrice));
-
-            if(gameToRemove == null)
-                System.out.println("The game does not exist in the database.");
-            else
-                gameDataBase.removeEntry(gameToRemove);
-
+            gameDataBase.removeEntry(new VideoGame(videoGameTitle, videoGamePrice));
+            
             System.out.println("Would you like to remove another game from the database? (Y/N)");
             char ans = scanner.nextLine().toUpperCase().charAt(0);
             if(ans != 'Y')
