@@ -32,26 +32,4 @@ public class Node<T extends Comparable<T>> implements Serializable{
 
     public boolean isLeaf(){return (leftNode == null && rightNode == null);}
 
-    /*public int calculateNewHeight() {
-        int leftNodeHeight = 0;
-        int rightNodeHeight = 0;
-
-        if(this.isLeaf()){
-            return 0;
-        }
-        else{
-            if(this.leftNode != null){
-                leftNodeHeight = 1 + this.leftNode.getHeight();
-            }
-
-            if(this.rightNode != null){
-                rightNodeHeight = 1 + this.rightNode.getHeight();
-            }
-            int updatedHeight = Math.max(leftNodeHeight, rightNodeHeight);
-            this.height = updatedHeight;
-            return updatedHeight;
-        }
-    }
-    */
-
 }
