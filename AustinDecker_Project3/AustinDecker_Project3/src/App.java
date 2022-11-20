@@ -28,12 +28,9 @@ public class App{
                     removeGame();
                     break;
                 case "3":
-                    searchDataBase();
-                    break;
-                case "4":
                     saveDataBaseToFile();
                     break;
-                case "5":
+                case "4":
                     loadDataBaseFromFile();
                     break;
                 default:
@@ -122,10 +119,6 @@ public class App{
 
         }while(true);
         
-    }
-
-    private static void searchDataBase(){
-        //TODO
     }
 
     private static void saveDataBaseToFile(){
