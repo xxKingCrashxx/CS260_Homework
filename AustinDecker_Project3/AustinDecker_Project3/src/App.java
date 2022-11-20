@@ -46,7 +46,7 @@ public class App{
 
         String exitString = "";
         do{
-            int videoGamePrice = 0;
+            double videoGamePrice = 0;
             String videoGameName = "";
             boolean validPrice = false, validName = false;
             while(!(validPrice && validName)){
@@ -62,7 +62,7 @@ public class App{
     
                 System.out.println("What is the price of the video game?");
                 try {
-                    videoGamePrice = Integer.parseInt(scanner.nextLine());
+                    videoGamePrice = Double.parseDouble(scanner.nextLine());
                     validPrice = true;
                 }
                 catch (NumberFormatException nfe) {
@@ -85,7 +85,7 @@ public class App{
     private static void removeGame(){
         do{
             String videoGameTitle = "";
-            int videoGamePrice = 0;
+            double videoGamePrice = 0;
             boolean validPrice = false, validName = false;
 
             while(!(validPrice && validName)){
@@ -94,7 +94,7 @@ public class App{
     
                 System.out.println("What is the price of the video game?");
                 try {
-                    videoGamePrice = Integer.parseInt(scanner.nextLine());
+                    videoGamePrice = Double.parseDouble(scanner.nextLine());
                     if(videoGamePrice >= 0)
                         validPrice = true;
                     else

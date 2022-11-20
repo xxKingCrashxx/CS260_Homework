@@ -2,15 +2,15 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class VideoGame implements Serializable, Comparable<VideoGame>{
-    private int price;
+    private double price;
     private String name;
 
-    public VideoGame(String name, int price){
+    public VideoGame(String name, double price){
         this.name = name;
         this.price = price;
     }
 
-    public int getPrice() {return price;}
+    public double getPrice() {return price;}
 
     public String getName() {return name;}
 
@@ -51,7 +51,7 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
     @Override
     public String toString(){
         StringBuilder string = new StringBuilder();
-        return string.append(name + ":" + price).toString();
+        return string.append(name + ":" + "$" + price).toString();
     }
     
 }
