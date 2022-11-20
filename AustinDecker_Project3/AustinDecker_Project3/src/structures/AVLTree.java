@@ -23,25 +23,21 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
     }
 
     //delete node
-    public Node<T> removeNodeWithData(T data){
+    public void removeNodeWithData(T data){
         Node<T> delNode = findNodeWithData(data);
-
-        if(delNode == null)
-            System.out.println("the data to be deleted does not exist.");
-        else{
-            root = delete(root, delNode);
-            return root;
-        }
-        return null;
+        root = delete(root, delNode);
     }
 
     public Node<T> findNodeWithData(T data){
         return binarySearch(root, data);
     }
 
+    public boolean isEmpty(){
+        return root == null ? true:false;
+    }
+
     public void printTreeDiagram(){
-        //TODO
-        System.out.println(inOrderTraversal(root, new StringBuilder("")));
+        printHelper(root, "", true);
     }
 
     @Override
@@ -75,18 +71,16 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
     }
 
     private int calculateBalanceFactor(Node<T> node){
-        return height(node.getLeftNode()) - height(node.getRightNode());
+        return node == null ? -1 : height(node.getLeftNode()) - height(node.getRightNode());
     }
 
     private int height(Node<T> node){
-        if(node == null)
-            return -1;
-        else
-            return node.getHeight();
+        return node == null ? -1: node.getHeight();
     }
 
     private void updateHeight(Node<T> node){
-        node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
+        if(node != null)
+            node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
     }
 
     private Node<T> leftRotation(Node<T> root){
@@ -94,7 +88,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         root.setRightNode(newRoot.getLeftNode());
         newRoot.setLeftNode(root);
 
-        //update height
         updateHeight(root);
         updateHeight(newRoot);
         return newRoot;
@@ -105,23 +98,18 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         root.setLeftNode(newRoot.getRightNode());
         newRoot.setRightNode(root);
 
-        //update height
         updateHeight(root);
         updateHeight(newRoot);
         return newRoot;
     }
 
     private Node<T> determineRotation(Node<T> node){
-        //left-left
         if(calculateBalanceFactor(node) > 1){
-            //left-right
             if(calculateBalanceFactor(node.getLeftNode()) < 0)
                 node.setLeftNode(leftRotation(node.getLeftNode()));
             return rightRotation(node);
         }
-        //right-right
         else if(calculateBalanceFactor(node) < -1){
-            //right-left
             if(calculateBalanceFactor(node.getRightNode()) > 0)
                 node.setRightNode(rightRotation(node.getRightNode()));
             return leftRotation(node);
@@ -145,7 +133,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
     }
 
     private Node<T> delete(Node<T> root, Node<T> targetNode){
-        //TODO
         if(root == null)
             return null;
 
@@ -156,26 +143,27 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
             root.setRightNode(delete(root.getRightNode(), targetNode));
         }
         else{
-            if(root.getLeftNode() == null || root.getRightNode() == null){
-                Node<T> tempNode = null;
-
-                if(root.getLeftNode() == tempNode){
-                    tempNode = root.getRightNode();
-                }
-                else{
-                    tempNode = root.getLeftNode();
-                }
-
-                if(tempNode == null){
-                    root = null;
-                }
-                else{
-                    root = tempNode;
-                }
+            Node<T> tempNode;
+            if(root.getLeftNode() == null && root.getRightNode() == null){
+                root = null;
             }
-        
+            else if(root.getLeftNode() == null){
+                tempNode = root;
+                root = root.getRightNode();
+            }
+            else if(root.getRightNode() == null){
+                tempNode = root;
+                root = root.getLeftNode();
+            }
+            else{
+                tempNode = getMax(root.getLeftNode());
+                root.setData(tempNode.getData());
+                root.setLeftNode(delete(root.getLeftNode(), tempNode));
+
+            }
         }
-        return null;
+        updateHeight(root);
+        return determineRotation(root);
     }
 
     private Node<T> getMax(Node<T> root) {
@@ -186,21 +174,34 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return cursor;
     }
 
-    private Node<T> getMin(Node<T> root){
-        Node<T> cursor = root;
-        while(cursor.getLeftNode() != null){
-            cursor = cursor.getLeftNode();
+    private String toStringPreOrderHelper(Node<T> currentNode, StringBuilder string){
+
+        if(currentNode != null){
+            string.append(currentNode.getData().toString() + " ");
+            if(currentNode.getLeftNode() != null)
+                toStringPreOrderHelper(currentNode.getLeftNode(), string);
+            if(currentNode.getRightNode() != null)
+                toStringPreOrderHelper(currentNode.getRightNode(), string);
         }
-        return cursor;
+        return string.toString();
     }
 
-    private String toStringPreOrderHelper(Node<T> currentNode, StringBuilder string){
-        string.append(currentNode.getData().toString() + " ");
-        if(currentNode.getLeftNode() != null)
-            toStringPreOrderHelper(currentNode.getLeftNode(), string);
-        if(currentNode.getRightNode() != null)
-            toStringPreOrderHelper(currentNode.getRightNode(), string);
-        return string.toString();
-        
-    }
+    private void printHelper(Node<T> root, String indent, boolean last) {
+		
+	   	if (root != null) {
+		   System.out.print(indent);
+		   if (last) {
+		      System.out.print("R----");
+		      indent += "     ";
+		   } else {
+		      System.out.print("L----");
+		      indent += "|    ";
+		   }
+
+		   System.out.println(root.getData().toString());
+
+		   printHelper(root.getLeftNode(), indent, false);
+		   printHelper(root.getRightNode(), indent, true);
+		}
+	}
 }

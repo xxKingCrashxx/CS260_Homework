@@ -15,6 +15,23 @@ public class TestMain {
 
         System.out.println(myGameDataBase.database.toString());
         myGameDataBase.database.printTreeDiagram();
+
+        myGameDataBase.database.removeNodeWithData(new VideoGame("the witcher 3", 70));
+        myGameDataBase.database.removeNodeWithData(new VideoGame("Darksouls", 35));
+        myGameDataBase.database.removeNodeWithData(new VideoGame("Skyrim", 90));
+        myGameDataBase.database.removeNodeWithData(new VideoGame("Minecraft", 27));
+        myGameDataBase.database.removeNodeWithData(new VideoGame("Dark tide", 40));
+        myGameDataBase.database.removeNodeWithData(new VideoGame("osu", 0));
+        myGameDataBase.database.removeNodeWithData(new VideoGame("Fallout", 100));
+
+        System.out.println("");
+        System.out.println(myGameDataBase.database.toString());
+
+        myGameDataBase.database.removeNodeWithData(new VideoGame("Elden ring", 69));
+
+        System.out.println(myGameDataBase.database.isEmpty());
+        System.out.println(myGameDataBase.database.toString());
+       
         
     }
     

@@ -86,9 +86,6 @@ public class App{
     }
 
     private static void removeGame(){
-        
-        
-        //TODO
         do{
             String videoGameTitle = "";
             int videoGamePrice = 0;

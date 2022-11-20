@@ -12,20 +12,17 @@ public class DataBaseAccess {
 
     public void removeEntry(VideoGame game){
         //TODO
+        if(database.isEmpty() || findEntry(game) == null)
+            System.out.println("Video game was not found in the database.");
+        else{
+            database.removeNodeWithData(game);
+        }
     }
 
     public VideoGame findEntry(VideoGame game){
         //TODO
         Node<VideoGame> foundNode = database.findNodeWithData(game);
-
-        if(foundNode == null){
-            return null;
-        }
-        else{
-            return foundNode.getData();
-        }
-        
-
+        return foundNode == null ? null : foundNode.getData();
     }
 
     public static void loadDataBaseFromFile(){
