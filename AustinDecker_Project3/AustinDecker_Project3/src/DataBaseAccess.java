@@ -12,14 +12,15 @@ public class DataBaseAccess {
     }
 
     public void removeEntry(VideoGame game){
-        //TODO
+        database.printTreeDiagram();
+        System.out.println(database.toString());
+
         if(database.isEmpty() || findEntry(game) == null)
             System.out.println("Video game was not found in the database.");
         else{
             database.removeNodeWithData(game);
+            System.out.println("Video game was removed from the database");
         }
-        database.printTreeDiagram();
-        System.out.println(database.toString());
     }
 
     public VideoGame findEntry(VideoGame game){

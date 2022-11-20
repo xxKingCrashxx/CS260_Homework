@@ -98,7 +98,7 @@ public class App{
                 System.out.println("What is the price of the video game?");
                 try {
                     videoGamePrice = Integer.parseInt(scanner.nextLine());
-                    if(videoGamePrice > 0)
+                    if(videoGamePrice >= 0)
                         validPrice = true;
                     else
                         System.out.println("please put in a value greater than 0.");    
@@ -114,7 +114,7 @@ public class App{
                 }
             }
             gameDataBase.removeEntry(new VideoGame(videoGameTitle, videoGamePrice));
-            
+
             System.out.println("Would you like to remove another game from the database? (Y/N)");
             char ans = scanner.nextLine().toUpperCase().charAt(0);
             if(ans != 'Y')
