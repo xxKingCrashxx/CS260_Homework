@@ -50,7 +50,8 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
 
     @Override
     public String toString(){
-        return this.name; 
+        StringBuilder string = new StringBuilder();
+        return string.append(name + ":" + price).toString();
     }
     
 }
