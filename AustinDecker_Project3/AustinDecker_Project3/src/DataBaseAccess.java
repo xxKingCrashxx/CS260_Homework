@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 import structures.AVLTree;
 import structures.Node;
@@ -23,7 +22,7 @@ public class DataBaseAccess {
     }
 
     public void removeEntry(VideoGame game){
-
+        System.out.printf("\n");
         if(database.isEmpty() || findEntry(game) == null)
             System.out.println("Video game was not found in the database.");
         else{
@@ -32,6 +31,7 @@ public class DataBaseAccess {
         }
         database.printTreeDiagram();
         System.out.println(database.toString());
+        System.out.printf("\n");
     }
 
     public VideoGame findEntry(VideoGame game){
@@ -44,6 +44,7 @@ public class DataBaseAccess {
         ObjectInputStream objectInputStream;
         File file = new File("src\\db_save.txt");
 
+        System.out.printf("\n");
         if(dataBaseAccess == null){
             System.out.println("DataBaseAcess object is null.");
             return;
@@ -58,6 +59,8 @@ public class DataBaseAccess {
                 dataBaseAccess.database = (AVLTree<VideoGame>)objectInputStream.readObject();
                 objectInputStream.close();
                 fInputStream.close();
+
+                System.out.println("database loaded successfully.");
             }else{
                 System.out.println("No database has been previously saved.");
             }
@@ -69,6 +72,7 @@ public class DataBaseAccess {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.printf("\n");
     }
 
     public static void saveDataBaseToFile(DataBaseAccess dataBaseAcess){
@@ -76,6 +80,7 @@ public class DataBaseAccess {
         ObjectOutputStream objectOutputStream;
         File file = new File("src//db_save.txt");
 
+        System.out.printf("\n");
         try {
 
             if(!file.exists())
@@ -88,11 +93,13 @@ public class DataBaseAccess {
             objectOutputStream.close();
             fOutputStream.close();
 
+            System.out.println("database saved successfully.");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.printf("\n");
     }
 }

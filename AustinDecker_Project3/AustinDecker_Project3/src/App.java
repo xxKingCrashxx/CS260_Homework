@@ -12,10 +12,10 @@ public class App{
             System.out.printf("\t0:Exit application%n");
             System.out.printf("\t1:Add new video game to database%n");
             System.out.printf("\t2:Remove video game from database%n");
-            System.out.printf("\t3:Search database for video game%n");
-            System.out.printf("\t4:Save database to file%n");
-            System.out.printf("\t5:Load previously saved database from file%n");
-            System.out.printf("%n%n%n----------------------------------------------------------------------------%n");
+            System.out.printf("\t3:Save database to file%n");
+            System.out.printf("\t4:Load previously saved database from file%n");
+            System.out.printf("\t5:Print database to screen.%n");
+            System.out.printf("%n----------------------------------------------------------------------------%n");
             
             switch (scanner.nextLine()) {
                 case "0":
@@ -33,6 +33,9 @@ public class App{
                 case "4":
                     loadDataBaseFromFile();
                     break;
+                case "5":
+                    printDataBaseToScreen();
+                    break;
                 default:
                     System.out.println("The inputted value did not match any of the possible options listed above.");
                     break;
@@ -41,6 +44,9 @@ public class App{
         while (running);
         System.out.printf("Application will now close.%n");
         scanner.close();
+    }
+    private static void printDataBaseToScreen(){
+        gameDataBase.database.printTreeDiagram();
     }
     private static void addNewGame(){
 
