@@ -3,6 +3,7 @@ import structures.*;
 public class TestMain {
     
     static DataBaseAccess myGameDataBase = new DataBaseAccess();
+    static DataBaseAccess myGameDataBase2 = new DataBaseAccess();
     public static void main(String[] args){
         myGameDataBase.addEntry(new VideoGame("the witcher 3", 70));
         myGameDataBase.addEntry(new VideoGame("Darksouls", 35));
@@ -16,21 +17,15 @@ public class TestMain {
         System.out.println(myGameDataBase.database.toString());
         myGameDataBase.database.printTreeDiagram();
 
-        myGameDataBase.database.removeNodeWithData(new VideoGame("the witcher 3", 70));
-        myGameDataBase.database.removeNodeWithData(new VideoGame("Darksouls", 35));
-        myGameDataBase.database.removeNodeWithData(new VideoGame("Skyrim", 90));
-        myGameDataBase.database.removeNodeWithData(new VideoGame("Minecraft", 27));
-        myGameDataBase.database.removeNodeWithData(new VideoGame("Dark tide", 40));
-        myGameDataBase.database.removeNodeWithData(new VideoGame("osu", 0));
-        myGameDataBase.database.removeNodeWithData(new VideoGame("Fallout", 100));
+        DataBaseAccess.saveDataBaseToFile(myGameDataBase);
+        DataBaseAccess.loadDataBaseFromFile(myGameDataBase2);
 
-        System.out.println("");
-        System.out.println(myGameDataBase.database.toString());
+        myGameDataBase.removeEntry(new VideoGame("Elden ring", 69));
 
-        myGameDataBase.database.removeNodeWithData(new VideoGame("Elden ring", 69));
+        myGameDataBase2.database.printTreeDiagram();
+        System.out.println(myGameDataBase2.database.toString());
 
-        System.out.println(myGameDataBase.database.isEmpty());
-        System.out.println(myGameDataBase.database.toString());
+        
        
         
     }
