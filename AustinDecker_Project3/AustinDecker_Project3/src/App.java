@@ -3,6 +3,10 @@ import java.util.Scanner;
 public class App{
     private static DataBaseAccess gameDataBase = new DataBaseAccess();
     private static Scanner scanner = new Scanner(System.in);
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args){
         
         boolean running = true;

@@ -1,6 +1,10 @@
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * VideoGame class which holds the properties of video games.
+ * 
+ */
 public class VideoGame implements Serializable, Comparable<VideoGame>{
     private double price;
     private String name;
@@ -18,6 +22,13 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
 
     public void setName(String name) {this.name = name;}
 
+    
+    /**
+     * Compares two VideoGame Objects' hashcode.  If  obj1 > obj2 -> obj1.compareTo(obj2) returns 1.
+     * if obj1 == obj2 -> obj1.compareTo(obj2) returns 0.  if obj1 < obj2 -> obj1.compareT(obj2) returns -1.
+     * @param o
+     * @return int
+     */
     @Override
     public int compareTo(VideoGame o) {
         int videoGameIntValue = this.hashCode();
@@ -31,6 +42,11 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
             return -1;
     }
 
+    
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o){
         if (this == o)
@@ -43,11 +59,19 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
         VideoGame videoGame = (VideoGame)o;
         return Objects.equals(this.name, videoGame.name) && this.price == videoGame.price;
     }
+    
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode(){
         return Objects.hash(price, name);
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         StringBuilder string = new StringBuilder();
