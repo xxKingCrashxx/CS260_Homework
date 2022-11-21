@@ -122,11 +122,11 @@ public class App{
     }
 
     private static void saveDataBaseToFile(){
-        //TODO
+        DataBaseAccess.saveDataBaseToFile(gameDataBase);
     }
 
     private static void loadDataBaseFromFile(){
-        //TODO
+        DataBaseAccess.loadDataBaseFromFile(gameDataBase);
     }
     
 }
