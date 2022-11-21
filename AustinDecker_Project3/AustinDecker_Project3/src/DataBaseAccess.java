@@ -5,7 +5,9 @@ public class DataBaseAccess {
     AVLTree<VideoGame> database = new AVLTree<>();
 
     public void addEntry(VideoGame game){
-        //TODO
+        if(game == null)
+            throw new NullPointerException("Cannot add a null value to the database.");
+
         database.addNode(new Node<VideoGame>(game, null, null));
         database.printTreeDiagram();
         System.out.println(database.toString());
@@ -24,7 +26,6 @@ public class DataBaseAccess {
     }
 
     public VideoGame findEntry(VideoGame game){
-        //TODO
         Node<VideoGame> foundNode = database.findNodeWithData(game);
         return foundNode == null ? null : foundNode.getData();
     }

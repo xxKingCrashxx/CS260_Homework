@@ -116,8 +116,8 @@ public class App{
             char ans = scanner.nextLine().toUpperCase().charAt(0);
             if(ans != 'Y')
                 break;
-
         }while(true);
+        System.out.println("Returning to main menu.");
         
     }
 
