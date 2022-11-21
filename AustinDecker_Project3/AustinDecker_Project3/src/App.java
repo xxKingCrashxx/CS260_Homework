@@ -78,6 +78,7 @@ public class App{
             VideoGame game = new VideoGame(videoGameName, videoGamePrice);
             gameDataBase.addEntry(game);
 
+            System.out.printf("\n");
             System.out.printf("The new video game: %s has been added to the game database.%n", game.getName());
             System.out.println("Do you wish to add another game to the database? (Y/N)");
             exitString = scanner.nextLine().toUpperCase();
