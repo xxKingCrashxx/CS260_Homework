@@ -1,10 +1,5 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
+import java.util.ArrayList;
 
 import structures.AVLTree;
 import structures.Node;
@@ -60,39 +55,18 @@ public class DataBaseAccess {
      * @param dataBaseAccess
      */
     public static void loadDataBaseFromFile(DataBaseAccess dataBaseAccess){
-        FileInputStream fInputStream;
-        ObjectInputStream objectInputStream;
-        File file = new File("src\\db_save.txt");
 
-        System.out.printf("\n");
-        if(dataBaseAccess == null){
-            System.out.println("DataBaseAcess object is null.");
-            return;
+        ArrayList<AVLTree<VideoGame>> avlTreeWrapper = new ArrayList<>();
+        avlTreeWrapper.add(dataBaseAccess.database);
+        
+        boolean result = ObjectReaderHelper.readObject("src\\db_save.txt", avlTreeWrapper);
+
+        if(result){
+            dataBaseAccess.database = avlTreeWrapper.get(0);
+            System.out.println("\n\ndatabase was loaded successfully.");
+        } else{
+            System.out.println("\n\ndatabase was not loaded successfully.  File not found or data is invalid.");
         }
-
-        try {
-
-            if(file.exists()){
-                fInputStream = new FileInputStream(file);
-                objectInputStream = new ObjectInputStream(fInputStream);
-
-                dataBaseAccess.database = (AVLTree<VideoGame>)objectInputStream.readObject();
-                objectInputStream.close();
-                fInputStream.close();
-
-                System.out.println("database loaded successfully.");
-            }else{
-                System.out.println("No database has been previously saved.");
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        System.out.printf("\n");
     }
 
     /**
@@ -100,30 +74,11 @@ public class DataBaseAccess {
      * @param dataBaseAcess
      */
     public static void saveDataBaseToFile(DataBaseAccess dataBaseAcess){
-        FileOutputStream fOutputStream;
-        ObjectOutputStream objectOutputStream;
-        File file = new File("src//db_save.txt");
-
-        System.out.printf("\n");
-        try {
-
-            if(!file.exists())
-                file.createNewFile();
-
-            fOutputStream = new FileOutputStream(file);
-            objectOutputStream = new ObjectOutputStream(fOutputStream);
-            objectOutputStream.writeObject(dataBaseAcess.database);
-
-            objectOutputStream.close();
-            fOutputStream.close();
-
-            System.out.println("database saved successfully.");
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        boolean result = ObjectWriterHelper.writeObject("src\\db_save.txt", dataBaseAcess.database);
+        if(result){
+            System.out.println("\n\nDatabase was written to the file successfully.");
+        } else{
+            System.out.println("\n\nDatabase could not be written to a file.");
         }
-        System.out.printf("\n");
     }
 }
