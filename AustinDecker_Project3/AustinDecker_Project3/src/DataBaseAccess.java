@@ -6,6 +6,11 @@ import structures.Node;
 import utils.ObjectReaderHelper;
 import utils.ObjectWriterHelper;
 
+/**
+ * Class used to access the AVLTree<VideoGame> database.
+ * @author Austin Decker
+ * @version 1.0
+ */
 public class DataBaseAccess {
     AVLTree<VideoGame> database = new AVLTree<>();
 

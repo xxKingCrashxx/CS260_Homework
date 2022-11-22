@@ -5,8 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-/***
- * Helper class used for writing serializable objects to a file.
+/**
+ * Helper class for writing serializable objects to a file.
+ * @author Austin Decker
+ * @version 1.0
  */
 public class ObjectWriterHelper {
     
@@ -14,6 +16,13 @@ public class ObjectWriterHelper {
     private static FileOutputStream fOutputStream;
     private static ObjectOutputStream objectOutputStream;
 
+    /**
+     * 
+     * @param <T> T Object
+     * @param fileName
+     * @param <T> object
+     * @return boolean
+     */
     public static <T> boolean writeObject(String fileName, T object){
 
         try{

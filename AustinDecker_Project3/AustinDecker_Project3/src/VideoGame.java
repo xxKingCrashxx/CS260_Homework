@@ -3,7 +3,8 @@ import java.util.Objects;
 
 /**
  * VideoGame class which holds the properties of video games.
- * 
+ * @author Austin Decker
+ * @version 1.0
  */
 public class VideoGame implements Serializable, Comparable<VideoGame>{
     private double price;

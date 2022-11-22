@@ -6,11 +6,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+/**
+ * Helper class for reading serializable objects from a file.
+ * @author Austin Decker
+ * @version 1.0
+ */
 public class ObjectReaderHelper {
     private static File file;
     private static FileInputStream fInputStream;
     private static ObjectInputStream objectInputStream;
 
+    /**
+     * 
+     * @param <T> object
+     * @param fileName String
+     * @param obj ArrayList<T>
+     * @return
+     */
     public static <T> boolean readObject(String fileName, ArrayList<T> obj){
 
         try {

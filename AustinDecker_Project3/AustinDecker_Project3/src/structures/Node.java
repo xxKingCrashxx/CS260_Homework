@@ -3,6 +3,8 @@ package structures;
 import java.io.Serializable;
 /***
  * Node class used for AVLTree to hold generic objects.
+ * @author Austin Decker
+ * @version 1.0
  */
 public class Node<T extends Comparable<T>> implements Serializable{
     private Node<T> leftNode;
