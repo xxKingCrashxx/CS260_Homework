@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 import structures.AVLTree;
 import structures.Node;
+import utils.ObjectReaderHelper;
+import utils.ObjectWriterHelper;
 
 public class DataBaseAccess {
     AVLTree<VideoGame> database = new AVLTree<>();
@@ -71,10 +73,10 @@ public class DataBaseAccess {
 
     /**
      * Saves the contents of the database to a file. 
-     * @param dataBaseAcess
+     * @param dataBaseAccess
      */
-    public static void saveDataBaseToFile(DataBaseAccess dataBaseAcess){
-        boolean result = ObjectWriterHelper.writeObject("src\\db_save.txt", dataBaseAcess.database);
+    public static void saveDataBaseToFile(DataBaseAccess dataBaseAccess){
+        boolean result = ObjectWriterHelper.writeObject("src\\db_save.txt", dataBaseAccess.database);
         if(result){
             System.out.println("\n\nDatabase was written to the file successfully.");
         } else{
