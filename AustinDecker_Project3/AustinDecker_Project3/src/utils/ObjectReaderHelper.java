@@ -23,13 +23,14 @@ public class ObjectReaderHelper {
      * @param obj ArrayList<T>
      * @return
      */
-    public static <T> boolean readObject(String fileName, ArrayList<T> obj){
+    public static <T> boolean readObject(String fileName, T[] obj){
 
         try {
             file = new File(fileName);
             fInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fInputStream);
-            obj.set(0, (T)objectInputStream.readObject());
+            
+            obj[0] = (T)objectInputStream.readObject();
 
             objectInputStream.close();
             fInputStream.close();

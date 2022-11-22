@@ -1,5 +1,5 @@
 
-import java.util.ArrayList;
+import java.lang.reflect.Array;
 
 import structures.AVLTree;
 import structures.Node;
@@ -63,13 +63,12 @@ public class DataBaseAccess {
      */
     public static void loadDataBaseFromFile(DataBaseAccess dataBaseAccess){
 
-        ArrayList<AVLTree<VideoGame>> avlTreeWrapper = new ArrayList<>();
-        avlTreeWrapper.add(dataBaseAccess.database);
+        AVLTree<VideoGame>[] avlTreeWrapper = (AVLTree<VideoGame>[]) Array.newInstance(AVLTree.class, 1);
+        avlTreeWrapper[0] = dataBaseAccess.database;
         
         boolean result = ObjectReaderHelper.readObject("src\\db_save.txt", avlTreeWrapper);
-
         if(result){
-            dataBaseAccess.database = avlTreeWrapper.get(0);
+            dataBaseAccess.database = avlTreeWrapper[0];
             System.out.println("\n\ndatabase was loaded successfully.");
         } else{
             System.out.println("\n\ndatabase was not loaded successfully.  File not found or data is invalid.");
