@@ -27,7 +27,6 @@ public class DataBaseAccess {
         System.out.println(database.toString());
         System.out.printf("\n");
     }
-
     
     /**
      * Removes the video game from the database if the game to be removed is in the database. 
@@ -45,7 +44,6 @@ public class DataBaseAccess {
         System.out.println(database.toString());
         System.out.printf("\n");
     }
-
     
     /**
      * Does a binary search of the VideoGame object and returns the object if found and returns null if the object was not found in the database. 
@@ -56,7 +54,6 @@ public class DataBaseAccess {
         Node<VideoGame> foundNode = database.findNodeWithData(game);
         return foundNode == null ? null : foundNode.getData();
     }
-
     
     /**
      * loads in the database from a file if there is a file to read. 
@@ -98,7 +95,6 @@ public class DataBaseAccess {
         System.out.printf("\n");
     }
 
-    
     /**
      * Saves the contents of the database to a file. 
      * @param dataBaseAcess

@@ -9,7 +9,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         root = null;
     }
 
-    
     /**
      * Returns the Node<T> object which represents the root of the AVLTree.
      * @return Node<T>
@@ -18,7 +17,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return root;
     }
 
-    
     /** 
      * Sets the root of the AVLTree
      * @param root
@@ -27,7 +25,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         this.root = root;
     }
 
-    
     /**
      * Adds a new node to the AVLTree
      * @param data
@@ -37,7 +34,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
        root = insert(root, data);
     }
 
-    
     /**
      * Removes a node with the specified T data that it holds.
      * @param data
@@ -48,7 +44,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         root = delete(root, delNode);
     }
 
-    
     /** 
      * Does a binary search for the node that has T data.
      * Returns the Node holding the data if found and null otherwise.
@@ -59,7 +54,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return binarySearch(root, data);
     }
 
-    
     /** 
      * returns true if the root Node is null.
      * @return boolean
@@ -72,7 +66,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         printHelper(root, "", true);
     }
 
-    
     /** 
      * Returns a string representation of the AVLTree in PreOrder form.
      * @return String
@@ -82,7 +75,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return toStringPreOrderHelper(root, new StringBuilder(""));
     }
 
-    
     /** 
      * @param root
      * @param target
@@ -104,7 +96,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         } 
     }
 
-    
     /** 
      * @param root
      * @param string
@@ -119,7 +110,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return string.toString();
     }
 
-    
     /** 
      * @param node
      * @return int
@@ -128,7 +118,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return node == null ? -1 : height(node.getLeftNode()) - height(node.getRightNode());
     }
 
-    
     /** 
      * @param node
      * @return int
@@ -136,8 +125,7 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
     private int height(Node<T> node){
         return node == null ? -1: node.getHeight();
     }
-
-    
+   
     /** 
      * @param node
      */
@@ -146,7 +134,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
             node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
     }
 
-    
     /** 
      * @param root
      * @return Node<T>
@@ -161,7 +148,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return newRoot;
     }
 
-    
     /** 
      * @param root
      * @return Node<T>
@@ -176,7 +162,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return newRoot;
     }
 
-    
     /** 
      * @param node
      * @return Node<T>
@@ -196,7 +181,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
             return node;
     }
 
-    
     /** 
      * @param root
      * @param data
@@ -216,7 +200,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return determineRotation(root);
     }
 
-    
     /** 
      * @param root
      * @param targetNode
@@ -256,7 +239,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return determineRotation(root);
     }
 
-    
     /** 
      * @param root
      * @return Node<T>
@@ -269,7 +251,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return cursor;
     }
 
-    
     /** 
      * @param currentNode
      * @param string
@@ -287,7 +268,6 @@ public class AVLTree<T extends Comparable<T>> implements Serializable{
         return string.toString();
     }
 
-    
     /** 
      * @param root
      * @param indent

@@ -22,7 +22,6 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
 
     public void setName(String name) {this.name = name;}
 
-    
     /**
      * Compares two VideoGame Objects' hashcode.  If  obj1 > obj2 -> obj1.compareTo(obj2) returns 1.
      * if obj1 == obj2 -> obj1.compareTo(obj2) returns 0.  if obj1 < obj2 -> obj1.compareT(obj2) returns -1.
@@ -41,7 +40,6 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
         else
             return -1;
     }
-
     
     /** 
      * @param o
@@ -67,7 +65,6 @@ public class VideoGame implements Serializable, Comparable<VideoGame>{
     public int hashCode(){
         return Objects.hash(price, name);
     }
-
     
     /** 
      * @return String
