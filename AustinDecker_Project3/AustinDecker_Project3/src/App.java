@@ -53,12 +53,11 @@ public class App{
         gameDataBase.database.printTreeDiagram();
     }
     private static void addNewGame(){
-
-        String exitString = "";
         do{
             double videoGamePrice = 0;
             String videoGameName = "";
             boolean validPrice = false, validName = false;
+            
             while(!(validPrice && validName)){
                 System.out.println("What is the name of the video game that is to be added?");
                 videoGameName = scanner.nextLine();
@@ -84,12 +83,13 @@ public class App{
 
             System.out.printf("\n");
             System.out.printf("The new video game: %s has been added to the game database.%n", game.getName());
-            System.out.println("Do you wish to add another game to the database? (Y/N)");
-            exitString = scanner.nextLine().toUpperCase();
 
-            if(!exitString.equals("Y"))
-                exitString = "N";
-        }while(exitString.equals("Y"));
+            System.out.println("Do you wish to add another game to the database? (Y/N)");
+            char ans = scanner.nextLine().toUpperCase().charAt(0);
+            if(ans != 'Y')
+                break;
+
+        }while(true);
         System.out.println("Returning to main menu.");
     }
 
