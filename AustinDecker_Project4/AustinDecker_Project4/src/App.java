@@ -2,8 +2,10 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        HeapTree<Integer> intHeapTree = new HeapTree<>(10);
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
+
         do{
             System.out.println("==================================================================");
             System.out.println("Options:\n"
