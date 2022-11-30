@@ -16,6 +16,10 @@ public class HeapTree {
         heap = new int[treeSize];
     }
 
+   public void buildHeap(int[] numbers){
+        //TODO
+   }
+
     public void insert(int obj){
         if(currentIndex >= INIT_SIZE)
             ensureCapacity(heap.length * 2);

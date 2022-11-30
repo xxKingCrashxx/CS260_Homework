@@ -98,6 +98,6 @@ public class App {
             numbers[index] = Integer.parseInt(str);
             index++;
         }
-        intHeapTree.heapSort(numbers);
+        intHeapTree.buildHeap(numbers);
     }
 }
