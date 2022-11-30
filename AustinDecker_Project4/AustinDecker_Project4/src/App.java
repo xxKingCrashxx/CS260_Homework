@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
+    static HeapTree intHeapTree = new HeapTree(20);
     public static void main(String[] args) {
-        HeapTree<Integer> intHeapTree = new HeapTree<>(10);
+        
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -40,6 +42,7 @@ public class App {
                 default:
                     System.out.println("Not a valid input.");
             }
+            System.out.println(intHeapTree.getCurrentIndex());
         } while(running);
 
         scanner.close();
@@ -47,22 +50,33 @@ public class App {
     }
 
     private static void print() {
+        //TODO
+        intHeapTree.insert(Integer.valueOf(24));
+        intHeapTree.insert(Integer.valueOf(17));
+        intHeapTree.insert(Integer.valueOf(37));
+        intHeapTree.insert(Integer.valueOf(19));
+        intHeapTree.insert(Integer.valueOf(33));
+        intHeapTree.insert(Integer.valueOf(9));
+        intHeapTree.insert(Integer.valueOf(8));
+        intHeapTree.insert(Integer.valueOf(69));
 
+        intHeapTree.print();
     }
 
     private static void heapSort() {
-
+        //TODO
     }
 
     private static void delete() {
-
+        //TODO
     }
 
     private static void insert() {
-
+        //TODO
     }
 
     private static void buildHeap() {
-
+        ArrayList<String> buffer = new ArrayList<>();
+        FileReaderHelper.readFile("src\\numbers.txt", buffer);
     }
 }
