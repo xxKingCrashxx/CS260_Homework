@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class HeapTree {
     private final int INIT_SIZE;
@@ -17,7 +18,7 @@ public class HeapTree {
 
     public void insert(int obj){
         if(currentIndex >= INIT_SIZE)
-            throw new RuntimeException("Not enough space to add object to heap.");
+            ensureCapacity(heap.length * 2);
         heap[currentIndex] = obj;
 
         //reheaping the tree
@@ -30,6 +31,9 @@ public class HeapTree {
         if(currentIndex == 0){
             throw new IndexOutOfBoundsException("-1 is not a valid index");
         }
+
+        if(currentIndex <= heap.length * 2/3)
+            trimCapacity();
 
         int ans = heap[0];
         heap[0] = heap[currentIndex -1];
@@ -111,5 +115,15 @@ public class HeapTree {
         if(index >= (currentIndex/2) && index <= INIT_SIZE)
             return true;
         return false;
+    }
+
+    private void ensureCapacity(int size){
+        int[] biggerArray = Arrays.copyOf(heap, size);
+        this.heap = biggerArray;
+    }
+
+    private void trimCapacity(){
+        int[] trimmedArray = Arrays.copyOf(heap, heap.length * 2/3);
+        heap = trimmedArray;
     }
 } 

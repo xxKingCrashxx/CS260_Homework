@@ -3,9 +3,10 @@ import java.util.Scanner;
 
 public class App {
     static HeapTree intHeapTree = new HeapTree(20);
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         
-        Scanner scanner = new Scanner(System.in);
+        
         boolean running = true;
 
         do{
@@ -72,7 +73,12 @@ public class App {
     }
 
     private static void insert() {
-        //TODO
+        while(true){
+            System.out.println("Please enter a number:>");
+            int userNum = scanner.nextInt();
+
+            intHeapTree.insert(userNum);
+        }
     }
 
     private static void buildHeap() {
