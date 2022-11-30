@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-    static HeapTree intHeapTree = new HeapTree(20);
+    static HeapTree intHeapTree = new HeapTree(10);
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         
@@ -51,7 +51,7 @@ public class App {
     }
 
     private static void print() {
-        //TODO
+        intHeapTree.print();
     }
 
     private static void heapSort() {
@@ -59,22 +59,27 @@ public class App {
     }
 
     private static void delete() {
-        //TODO
+        intHeapTree.delete();
     }
 
     private static void insert() {
         while(true){
             System.out.println("Please enter a number:>");
-            int userNum = scanner.nextInt();
+            try{
+                int userNum = Integer.parseInt(scanner.nextLine());
+                System.out.println();
+                intHeapTree.insert(userNum);
+            }
+            catch(NumberFormatException e){
+                System.out.println("that is not an integer number");
+            }
 
-            intHeapTree.insert(userNum);
-            intHeapTree.print();
-
-            System.out.println("add another number?");
+            System.out.println("add another number? (Y/N)");
             String ans = scanner.nextLine();
 
             if(!ans.toUpperCase().equals("Y"))
                 break;
+            
         }
     }
 
@@ -89,7 +94,6 @@ public class App {
             numbers[index] = Integer.parseInt(str);
             index++;
         }
-
         intHeapTree.heapSort(numbers);
     }
 }

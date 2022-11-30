@@ -32,7 +32,7 @@ public class HeapTree {
             throw new IndexOutOfBoundsException("-1 is not a valid index");
         }
 
-        if(currentIndex <= heap.length * 2/3)
+        if(currentIndex < heap.length * 2/3)
             trimCapacity();
 
         int ans = heap[0];
