@@ -51,6 +51,7 @@ public class App {
     }
 
     private static void print() {
+        System.out.println();
         intHeapTree.print();
     }
 
@@ -60,6 +61,7 @@ public class App {
 
     private static void delete() {
         intHeapTree.delete();
+        intHeapTree.print();
     }
 
     private static void insert() {
@@ -67,19 +69,21 @@ public class App {
             System.out.println("Please enter a number:>");
             try{
                 int userNum = Integer.parseInt(scanner.nextLine());
-                System.out.println();
                 intHeapTree.insert(userNum);
             }
             catch(NumberFormatException e){
                 System.out.println("that is not an integer number");
             }
+            System.out.println();
+            intHeapTree.print();
+            System.out.println();
 
             System.out.println("add another number? (Y/N)");
             String ans = scanner.nextLine();
 
             if(!ans.toUpperCase().equals("Y"))
                 break;
-            
+            System.out.println();
         }
     }
 
