@@ -16,9 +16,24 @@ public class HeapTree {
         heap = new int[treeSize];
     }
 
-   public void buildHeap(int[] numbers){
-        //TODO
-   }
+    public void buildHeap(int[] numbers){
+        if(numbers.length >= heap.length){
+            ensureCapacity(numbers.length * (1+(1/3)));
+        }
+
+        for(int num : numbers){
+            heap[currentIndex] = num;
+            currentIndex++;
+        }
+
+        floidHeapify();
+    }
+
+    private void floidHeapify() {
+        for (int i = currentIndex/2; i > 0; i--) {
+            //TODO
+        }
+    }
 
     public void insert(int obj){
         if(currentIndex >= INIT_SIZE)
