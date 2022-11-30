@@ -52,16 +52,6 @@ public class App {
 
     private static void print() {
         //TODO
-        intHeapTree.insert(Integer.valueOf(24));
-        intHeapTree.insert(Integer.valueOf(17));
-        intHeapTree.insert(Integer.valueOf(37));
-        intHeapTree.insert(Integer.valueOf(19));
-        intHeapTree.insert(Integer.valueOf(33));
-        intHeapTree.insert(Integer.valueOf(9));
-        intHeapTree.insert(Integer.valueOf(8));
-        intHeapTree.insert(Integer.valueOf(69));
-
-        intHeapTree.print();
     }
 
     private static void heapSort() {
@@ -78,11 +68,28 @@ public class App {
             int userNum = scanner.nextInt();
 
             intHeapTree.insert(userNum);
+            intHeapTree.print();
+
+            System.out.println("add another number?");
+            String ans = scanner.nextLine();
+
+            if(!ans.toUpperCase().equals("Y"))
+                break;
         }
     }
 
     private static void buildHeap() {
         ArrayList<String> buffer = new ArrayList<>();
+        int[] numbers = new int[buffer.size()];
+
         FileReaderHelper.readFile("src\\numbers.txt", buffer);
+
+        int index = 0;
+        for (String str : buffer) {
+            numbers[index] = Integer.parseInt(str);
+            index++;
+        }
+
+        intHeapTree.heapSort(numbers);
     }
 }

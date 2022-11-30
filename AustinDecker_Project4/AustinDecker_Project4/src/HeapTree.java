@@ -45,7 +45,7 @@ public class HeapTree {
         return ans;
     }
 
-    public void heapSort(){
+    public void heapSort(int[] numbers){
         //TODO
     }
 
