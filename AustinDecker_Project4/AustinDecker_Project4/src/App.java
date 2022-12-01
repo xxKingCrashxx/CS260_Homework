@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main Entrypoint for application.
+ */
 public class App {
     static HeapTree intHeapTree = new HeapTree(10);
     static Scanner scanner = new Scanner(System.in);
@@ -43,7 +46,6 @@ public class App {
                 default:
                     System.out.println("Not a valid input.");
             }
-            System.out.println(intHeapTree.getCurrentIndex());
         } while(running);
 
         scanner.close();
@@ -56,7 +58,8 @@ public class App {
     }
 
     private static void heapSort() {
-        intHeapTree.heapSort();
+        int[] sortedHeap = intHeapTree.heapSort();
+        printArray(sortedHeap);
     }
 
     private static void delete() {
@@ -98,5 +101,13 @@ public class App {
             index++;
         }
         intHeapTree.buildHeap(numbers);
+    }
+    private static void printArray(int[] array){
+        for (int i : array) {
+            System.out.print(i + " ");
+            if(i == 0)
+                break;
+        }
+        System.out.println();
     }
 }

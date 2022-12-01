@@ -1,5 +1,9 @@
 import java.util.Arrays;
 
+/**
+ * Max Heap Structure
+ * 
+ */
 public class HeapTree {
     private final int INIT_SIZE;
     private int currentIndex = 0;
@@ -16,6 +20,10 @@ public class HeapTree {
         heap = new int[treeSize];
     }
 
+    /**
+     * builds the heap using the supplied array of numbers.
+     * @param numbers
+     */
     public void buildHeap(int[] numbers){
         if(numbers.length >= heap.length){
             ensureCapacity(numbers.length * (1+(1/3)));
@@ -45,14 +53,15 @@ public class HeapTree {
         }
 
         if(largestNode != index){
-            int temp = heap[index];
-            heap[index] = heap[largestNode];
-            heap[largestNode] = temp;
-
+            swap(index, largestNode);
             floidHeapify(largestNode, heapSize);
         }
     }
 
+    /**
+     * inserts a single integer into the heap and reheapifies the structure.
+     * @param obj
+     */
     public void insert(int obj){
         if(currentIndex >= heap.length)
             ensureCapacity(heap.length * 2);
@@ -63,6 +72,10 @@ public class HeapTree {
         currentIndex++;
     }
 
+    /**
+     * deletes the max node and reheapifies the structure
+     * @return
+     */
     public int delete(){
         if(currentIndex == 0){
             throw new IndexOutOfBoundsException("-1 is not a valid index");
@@ -71,8 +84,7 @@ public class HeapTree {
         if(currentIndex < heap.length * 2/3)
             trimCapacity();
 
-        int ans = heap[0];
-        heap[0] = heap[currentIndex -1];
+        int ans = swap(0, currentIndex - 1);
         heap[currentIndex-1] = 0;
 
         //reheapification downwards
@@ -81,19 +93,34 @@ public class HeapTree {
         return ans;
     }
 
-    public void heapSort(){
-        for(int i = currentIndex; i >= 0; i--){
-            floidHeapify(i, i);
+    /**
+     * returns a decending order array of values from the heap.
+     * @return
+     */
+    public int[] heapSort(){
+        int[] sortedHeap = new int[currentIndex];
+        
+        for(int j = 0, i = currentIndex; i > 0; i--, j++){
+            sortedHeap[j] = delete();
         }
+        return sortedHeap;
     }
 
+    /**
+     * prints the heap to screen in a single line.
+     */
     public void print(){
         for (int i : heap) {
             System.out.print(i + " ");
+            if(i == 0)
+                break;
         }
         System.out.println();
     }
-
+    /**
+     * returns the current index of the heap.
+     * @return
+     */
     public int getCurrentIndex() {
         return currentIndex -1;
     }
@@ -102,26 +129,20 @@ public class HeapTree {
         int travIndex = index;
 
         while((travIndex > 0) && heap[travIndex] > getParentNode(travIndex)){
-            int temp = getParentNode(travIndex);
-            heap[(travIndex -1)/2] = heap[travIndex];
-            heap[travIndex] = temp;
-
+            swap((travIndex -1)/2, travIndex);
             travIndex = (travIndex -1)/2;
         }
     }
 
     private void heapifyDown(int index){
         while(!isLeafNode(index)){
-            int temp = heap[index];
             int skip = 0;
             if((getLeftNode(index) > getRightNode(index)) && (heap[index] < getLeftNode(index))){
-                heap[index] = getLeftNode(index);
-                heap[2*index + 1] = temp;
+                swap(index, 2*index + 1);
                 skip = 1;
             }
             else if((getLeftNode(index) < getRightNode(index)) && (heap[index] < getRightNode(index))){
-                heap[index] = getRightNode(index);
-                heap[2*index + 2] = temp;
+                swap(index, 2*index + 2);
                 skip = 2;
             }
             else{
@@ -157,5 +178,13 @@ public class HeapTree {
     private void trimCapacity(){
         int[] trimmedArray = Arrays.copyOf(heap, heap.length * 2/3);
         heap = trimmedArray;
+    }
+
+    private int swap(int index1, int index2){
+        int temp = heap[index1];
+        heap[index1] = heap[index2];
+        heap[index2] = temp;
+
+        return temp;
     }
 } 
