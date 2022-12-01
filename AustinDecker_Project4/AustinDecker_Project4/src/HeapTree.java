@@ -25,13 +25,31 @@ public class HeapTree {
             heap[currentIndex] = num;
             currentIndex++;
         }
-
-        floidHeapify();
+        
+        for (int i = ((currentIndex)/2) - 1; i >= 0; i--) {
+            floidHeapify(i, heap.length);
+        }
     }
 
-    private void floidHeapify() {
-        for (int i = currentIndex/2; i > 0; i--) {
-            //TODO
+    private void floidHeapify(int index, int heapSize) {
+        int largestNode = index;
+        int left = 2*index + 1;
+        int right = 2*index + 2;
+
+        if(left < heapSize && heap[left] > heap[largestNode]){
+            largestNode = left;
+        }
+
+        if(right < heapSize && heap[right] > heap[largestNode]){
+            largestNode = right;
+        }
+
+        if(largestNode != index){
+            int temp = heap[index];
+            heap[index] = heap[largestNode];
+            heap[largestNode] = temp;
+
+            floidHeapify(largestNode, heapSize);
         }
     }
 
@@ -46,7 +64,6 @@ public class HeapTree {
     }
 
     public int delete(){
-
         if(currentIndex == 0){
             throw new IndexOutOfBoundsException("-1 is not a valid index");
         }
@@ -64,8 +81,10 @@ public class HeapTree {
         return ans;
     }
 
-    public void heapSort(int[] numbers){
-        //TODO
+    public void heapSort(){
+        for(int i = currentIndex; i >= 0; i--){
+            floidHeapify(i, i);
+        }
     }
 
     public void print(){
@@ -78,7 +97,7 @@ public class HeapTree {
     }
 
     public int getCurrentIndex() {
-        return currentIndex;
+        return currentIndex -1;
     }
 
     private void heapifyUp(int index){

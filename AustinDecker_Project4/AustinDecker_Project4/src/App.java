@@ -56,7 +56,7 @@ public class App {
     }
 
     private static void heapSort() {
-        //TODO
+        intHeapTree.heapSort();
     }
 
     private static void delete() {
@@ -89,9 +89,8 @@ public class App {
 
     private static void buildHeap() {
         ArrayList<String> buffer = new ArrayList<>();
-        int[] numbers = new int[buffer.size()];
-
         FileReaderHelper.readFile("src\\numbers.txt", buffer);
+        int[] numbers = new int[buffer.size()];
 
         int index = 0;
         for (String str : buffer) {
