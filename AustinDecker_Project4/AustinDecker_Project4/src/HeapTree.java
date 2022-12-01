@@ -110,9 +110,9 @@ public class HeapTree {
      */
     public void print(){
         for (int i : heap) {
-            System.out.print(i + " ");
             if(i == 0)
                 break;
+            System.out.print(i + " ");  
         }
         System.out.println();
     }
