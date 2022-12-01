@@ -41,15 +41,14 @@ public class HeapTree {
 
     private void floidHeapify(int index, int heapSize) {
         int largestNode = index;
-        int left = 2*index + 1;
-        int right = 2*index + 2;
+        
 
-        if(left < heapSize && getLeftNode(index) > heap[largestNode]){
-            largestNode = left;
+        if(getLeftIndex(index) < heapSize && getLeftNode(index) > heap[largestNode]){
+            largestNode = getLeftIndex(index);
         }
 
-        if(right < heapSize && getRightNode(index) > heap[largestNode]){
-            largestNode = right;
+        if(getRightIndex(index) < heapSize && getRightNode(index) > heap[largestNode]){
+            largestNode = getRightIndex(index);
         }
 
         if(largestNode != index){
@@ -129,8 +128,8 @@ public class HeapTree {
         int travIndex = index;
 
         while((travIndex > 0) && heap[travIndex] > getParentNode(travIndex)){
-            swap((travIndex -1)/2, travIndex);
-            travIndex = (travIndex -1)/2;
+            swap(getParentIndex(travIndex), travIndex);
+            travIndex = getParentIndex(travIndex);
         }
     }
 
@@ -138,11 +137,11 @@ public class HeapTree {
         while(!isLeafNode(index)){
             int skip = 0;
             if((getLeftNode(index) > getRightNode(index)) && (heap[index] < getLeftNode(index))){
-                swap(index, 2*index + 1);
+                swap(index, getLeftIndex(index));
                 skip = 1;
             }
             else if((getLeftNode(index) < getRightNode(index)) && (heap[index] < getRightNode(index))){
-                swap(index, 2*index + 2);
+                swap(index, getRightIndex(index));
                 skip = 2;
             }
             else{
@@ -156,12 +155,24 @@ public class HeapTree {
         return heap[(index - 1)/2];
     }
 
+    private int getParentIndex(int index){
+        return (index - 1) / 2;
+    }
+
     private int getRightNode(int index){
         return heap[2*index + 2];
     }
 
+    private int getRightIndex(int index){
+        return 2*index + 2;
+    }
+
     private int getLeftNode(int index){
         return heap[2*index + 1];
+    }
+
+    private int getLeftIndex(int index){
+        return 2*index + 1;
     }
 
     private boolean isLeafNode(int index){
