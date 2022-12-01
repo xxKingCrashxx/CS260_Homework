@@ -36,11 +36,11 @@ public class HeapTree {
         int left = 2*index + 1;
         int right = 2*index + 2;
 
-        if(left < heapSize && heap[left] > heap[largestNode]){
+        if(left < heapSize && getLeftNode(index) > heap[largestNode]){
             largestNode = left;
         }
 
-        if(right < heapSize && heap[right] > heap[largestNode]){
+        if(right < heapSize && getRightNode(index) > heap[largestNode]){
             largestNode = right;
         }
 
@@ -54,7 +54,7 @@ public class HeapTree {
     }
 
     public void insert(int obj){
-        if(currentIndex >= INIT_SIZE)
+        if(currentIndex >= heap.length)
             ensureCapacity(heap.length * 2);
         heap[currentIndex] = obj;
 
@@ -89,8 +89,6 @@ public class HeapTree {
 
     public void print(){
         for (int i : heap) {
-            if(i == 0)
-                break;
             System.out.print(i + " ");
         }
         System.out.println();
@@ -105,10 +103,10 @@ public class HeapTree {
 
         while((travIndex > 0) && heap[travIndex] > getParentNode(travIndex)){
             int temp = getParentNode(travIndex);
-            heap[travIndex/2] = heap[travIndex];
+            heap[(travIndex -1)/2] = heap[travIndex];
             heap[travIndex] = temp;
 
-            travIndex = travIndex/2;
+            travIndex = (travIndex -1)/2;
         }
     }
 
@@ -134,23 +132,19 @@ public class HeapTree {
     }
 
     private int getParentNode(int index){
-        return heap[index/2];
+        return heap[(index - 1)/2];
     }
 
     private int getRightNode(int index){
-        if(2*index + 2 >= INIT_SIZE)
-            return 0;
         return heap[2*index + 2];
     }
 
     private int getLeftNode(int index){
-        if(2*index + 1 >= INIT_SIZE)
-            return 0;
         return heap[2*index + 1];
     }
 
     private boolean isLeafNode(int index){
-        if(index >= (currentIndex/2) && index <= INIT_SIZE)
+        if(index >= (currentIndex/2) && index <= heap.length)
             return true;
         return false;
     }
